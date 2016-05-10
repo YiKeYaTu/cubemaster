@@ -1,0 +1,41 @@
+body, p, h1, ul {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Microsoft YaHei",Arial,Helvetica,sans-serif;
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+.reg:hover {
+    color: #fff !important;
+    box-shadow: #333 0px 0px 10px
+}
+.login:hover {
+    color: #fff !important;
+    box-shadow: #fff 0px 0px 10px
+}
+.trd::before {
+    content: "";
+    display: block;
+    width: 260px;
+    height: 2px;
+    background: #fff;
+    position: absolute;
+    left: -260px;
+    top: 14px;
+}
+.trd::after {
+    content: "";
+    display: block;
+    width: 260px;
+    height: 2px;
+    background: #fff;
+    position: absolute;
+    left: 200px;
+    top: 14px;
+}
