@@ -1,7 +1,5 @@
 node_modules/*
 
-package.json
-
-webpack.config.js
+.DS_Store
 
 index.html
