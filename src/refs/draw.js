@@ -24,7 +24,8 @@ export default class Draw {
                     item.data.pos.y + this.disTop,
                     child.data.pos.x,
                     child.data.pos.y + this.disTop,
-                    true //不开启反转
+                    true, //不开启反转
+                    item.data.background, child.data.background
                 )
                 item = child
             }  
@@ -67,9 +68,7 @@ export default class Draw {
                 
 
             } else if (disY === 0) { //横
-
                 if (Math.abs(disX) >= showAng) {
-
                     if (disX > 0) {
                         __draw.call(
                             this,
@@ -96,20 +95,32 @@ export default class Draw {
         this.context.lineJoin = 'round'
 
     }
-    lineTo (oldx, oldy, x, y, r) {
-
+    lineTo (oldx, oldy, x, y, r, beginBackground, endBackground) {
+        let colorArr
         const wayArr = _findWay(oldx, oldy, x, y, r)
 
+        this.drawAng(oldx, oldy, wayArr)
         this.context.moveTo(oldx, oldy)
 
-        wayArr.forEach((item) => {
+        if (beginBackground && endBackground) {
+            colorArr = __handleRgb(beginBackground, endBackground, wayArr.length)
+        }
+
+        wayArr.forEach((item, index) => {
+
+            // if (colorArr && colorArr.length > 0) {
+            //     let lg = this.context.createLinearGradient(oldx, oldy, item.x, item.y)
+            //     lg.addColorStop(0, colorArr[index])
+            //     lg.addColorStop(1, colorArr[index + 1])
+            //     this.context.strokeStyle = lg
+            // }
 
             this.context.lineTo(item.x, item.y)
-
+            oldx = item.x
+            oldy = item.y
+            this.context.stroke()
         })
-
-        this.context.stroke()
-        this.drawAng(oldx, oldy, wayArr)
+        this.context.strokeStyle = '#333'
     }
     beginPath () {
         this.context.beginPath();
@@ -168,7 +179,6 @@ function _findWay (oldx, oldy, x, y, r) {
             y: y,
         })
     }
-
     return way
 }
 
@@ -182,4 +192,24 @@ function __draw () {
     }
     this.context.closePath()
     this.context.stroke()
+}
+
+
+//将两个rgb值等分
+function __handleRgb (rgb1, rgb2, len) {
+    const matchRgb = /(\d+)/g
+
+    const [x1, y1, z1] = rgb1.match(matchRgb),
+        [x2, y2, z2] = rgb2.match(matchRgb)
+
+    const [disX, disY, disZ] = [x2 - x1, y2 - y1, z2 - z1]
+
+    let colorArr = []
+
+    for (let i = 0; i < len + 1; i++) {
+        colorArr.push(
+            `rgb(${x1 * 1 + Math.floor(disX * i / len)},${y1 * 1 + Math.floor(disY * i / len)},${z1 * 1 + Math.floor(disZ * i / len)})`
+        )
+    }
+    return colorArr
 }
