@@ -31,7 +31,10 @@ export default class Draw {
             }  
         })
     }
-    drawAng (beginx, beginy, wayArr) {
+    drawAng (beginx, beginy, oldwayArr, r) {
+
+        let wayArr = Array.from(oldwayArr)
+
         const angWidth = 10, angHeight = 10, showAng = 100
 
         let prvX = beginx, prvY = beginy
@@ -39,7 +42,21 @@ export default class Draw {
 
         this.context.beginPath()
         this.context.lineJoin = 'miter'
-        
+
+        if (!r) { //反转
+            wayArr.reverse()
+
+            let temp = wayArr.shift()
+
+            wayArr.push({
+                x: beginx,
+                y: beginy
+            })
+
+            prvX = temp.x
+            prvY = temp.y
+        }
+
         wayArr.forEach((item) => {
             disX = item.x - prvX
             disY = item.y - prvY
@@ -99,7 +116,7 @@ export default class Draw {
         let colorArr
         const wayArr = _findWay(oldx, oldy, x, y, r)
 
-        this.drawAng(oldx, oldy, wayArr)
+        this.drawAng(oldx, oldy, wayArr, r)
         this.context.moveTo(oldx, oldy)
 
         if (beginBackground && endBackground) {
