@@ -31,7 +31,7 @@ export default class Draw {
         })
     }
     drawAng (beginx, beginy, wayArr) {
-        const angWidth = 10, angHeight = 10, showAng = 50
+        const angWidth = 10, angHeight = 10, showAng = 100
 
         let prvX = beginx, prvY = beginy
         let disX, disY
