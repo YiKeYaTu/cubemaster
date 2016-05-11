@@ -52,6 +52,7 @@ let Combination = React.createClass({
         this.drawContext = new Draw(this.getContext(), {
             lineWidth: 6,
             lineJoin: 'round',
+            strokeStyle: '#333',
             disTop: this.disTop,
             disLeft: this.disLeft,
             content: this.getCanvas()
