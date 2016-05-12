@@ -50,7 +50,7 @@ let Combination = React.createClass({
     },
     componentDidMount () {
         this.drawContext = new Draw(this.getContext(), {
-            lineWidth: 4,
+            lineWidth: 2,
             lineJoin: 'round',
             strokeStyle: '#333',
             disTop: this.disTop,
@@ -300,9 +300,13 @@ let InInterface = React.createClass({
     handleMouseDown (e) {
         e.stopPropagation()
     },
-    // 次组件在初始化一次后便不再render
+    // 次组件在初始化一次后除非接口变化便不再render
     shouldComponentUpdate (nextProps, nextState) {
-        return false
+        if (!nextProps.connectInterface) {
+            return false
+        } else {
+            return true
+        }
     },
     render () {
         return (
@@ -318,8 +322,18 @@ let InInterface = React.createClass({
 })
 
 class InInterfaceComponent extends Component {
-
     render () {
+        let buttonType = this.props.buttonType,
+            connectInterface = this.props.connectInterface
+        let background
+        if (connectInterface) {
+            if (buttonType === 0 && !connectInterface.inInterface) {
+                background = '#000'
+            } 
+            if (buttonType === 1 && !connectInterface.outInterface) {
+                background = '#000'
+            }
+        }
         return (
             <div
                 onClick={this.props.handleConnectClick}
@@ -347,6 +361,7 @@ class InInterfaceComponent extends Component {
                         height: '10px',
                         borderRadius: '100%',
                         margin: '2px auto',
+                        background: background,
                     }}
                 >
                 </div>
