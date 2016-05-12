@@ -139,7 +139,7 @@ let Content = React.createClass({
         }
     },
     cannotConnect (error) {
-        alert(error)
+        console.error(error)
     },
 
     //遍历整个树

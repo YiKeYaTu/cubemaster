@@ -21,11 +21,11 @@ class MoreButtonComponent extends Component {
                     lineHeight: '8px',
                     fontSize: '20px',
                     borderRadius: '100%',
-                    border: '2px solid #fff',
+                    border: '2px solid #000',
                     display: 'block',
                     float: 'left',
                     textAlign: 'center',
-                    color: '#fff',
+                    color: '#000',
                     margin: '10px 10px'
                 }}
             >

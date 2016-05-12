@@ -13,3 +13,9 @@ body {
 .more:hover {
     transform: scale(1.4,1.4) !important;
 }
+.combination-element:hover {
+    box-shadow: #333 0px 0px 0px !important;
+}
+.interface:hover .interface-bg {
+    background: #000;
+}

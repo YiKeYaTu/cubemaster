@@ -2,12 +2,17 @@ export default class Draw {
     constructor (context, conf) {
 
         this.context = context
+        this.lineWidth = conf.lineWidth
         this.context.lineWidth = conf.lineWidth
         this.context.lineJoin = conf.lineJoin
         this.context.strokeStyle = conf.strokeStyle
         this.content = conf.content
         this.disTop = conf.disTop
         this.disLeft = conf.disLeft
+        this.saveLine = {}
+        if (conf.scale) {
+            this.context.scale(conf.scale, conf.scale)
+        }
 
     }
     reDraw (connectIndex) {
@@ -19,14 +24,17 @@ export default class Draw {
             while (item) {
                 this.context.beginPath()
                 child = item.child[0]
-                child && this.lineTo(
-                    item.data.pos.x + this.disLeft, 
-                    item.data.pos.y + this.disTop,
-                    child.data.pos.x,
-                    child.data.pos.y + this.disTop,
-                    true, //不开启反转
-                    item.data.background, child.data.background
-                )
+                if (child) {
+                    this.lineTo(
+                        item.data.pos.x + this.disLeft, 
+                        item.data.pos.y + this.disTop,
+                        child.data.pos.x,
+                        child.data.pos.y + this.disTop,
+                        true, //不开启反转
+                        item.data.type + item.data.index, 
+                        child.data.type + child.data.index
+                    )
+                }
                 item = child
             }  
         })
@@ -35,13 +43,14 @@ export default class Draw {
 
         let wayArr = Array.from(oldwayArr)
 
+        const DIS = this.lineWidth
         const angWidth = 10, angHeight = 10, showAng = 100
 
         let prvX = beginx, prvY = beginy
         let disX, disY
 
         this.context.beginPath()
-        this.context.lineJoin = 'miter'
+        this.context.lineJoin = 'bevel'
 
         if (!r) { //反转
             wayArr.reverse()
@@ -67,16 +76,16 @@ export default class Draw {
                     if (disY > 0) {
                         __draw.call(
                             this,
-                            prvX - angWidth / 2, prvY + (disY - angHeight) / 2,
-                            prvX + angWidth / 2, prvY + (disY - angHeight) / 2,
-                            prvX, prvY + (disY + angHeight) / 2
+                            prvX - angWidth / 2 + DIS / 2, prvY + (disY - angHeight) / 2,
+                            prvX + angWidth / 2 + DIS / 2, prvY + (disY - angHeight) / 2,
+                            prvX + DIS / 2, prvY + (disY + angHeight) / 2
                         )
                     } else {
                         __draw.call(
                             this,
-                            prvX - angWidth / 2, prvY + (disY + angHeight) / 2,
-                            prvX + angWidth / 2, prvY + (disY + angHeight) / 2,
-                            prvX, prvY + (disY - angHeight) / 2
+                            prvX - angWidth / 2 + DIS / 2, prvY + (disY + angHeight) / 2,
+                            prvX + angWidth / 2 + DIS / 2, prvY + (disY + angHeight) / 2,
+                            prvX + DIS / 2, prvY + (disY - angHeight) / 2
                         )
                     }
 
@@ -112,27 +121,27 @@ export default class Draw {
         this.context.lineJoin = 'round'
 
     }
-    lineTo (oldx, oldy, x, y, r, beginBackground, endBackground) {
+    lineTo (oldx, oldy, x, y, r, id1, id2) {
+
         let colorArr
+        const DIS = 2
         const wayArr = _findWay(oldx, oldy, x, y, r)
+
+        if (id1 && id2) {
+            let cp = Array.from(wayArr)
+            cp.unshift({
+                x: oldx,
+                y: oldy
+            })
+            this.saveLine[id1 + '&' + id2] = cp
+        }
 
         this.drawAng(oldx, oldy, wayArr, r)
         this.context.moveTo(oldx, oldy)
 
-        if (beginBackground && endBackground) {
-            colorArr = __handleRgb(beginBackground, endBackground, wayArr.length)
-        }
-
         wayArr.forEach((item, index) => {
 
-            // if (colorArr && colorArr.length > 0) {
-            //     let lg = this.context.createLinearGradient(oldx, oldy, item.x, item.y)
-            //     lg.addColorStop(0, colorArr[index])
-            //     lg.addColorStop(1, colorArr[index + 1])
-            //     this.context.strokeStyle = lg
-            // }
-
-            this.context.lineTo(item.x, item.y)
+            this.context.lineTo(item.x + DIS, item.y)
             oldx = item.x
             oldy = item.y
             this.context.stroke()
@@ -149,6 +158,75 @@ export default class Draw {
             this.content.width, 
             this.content.height
         )
+    }
+    changeColor (x, y) {
+        const saveLine = this.saveLine
+
+        let flag
+
+        for (let key in saveLine) {
+            if (saveLine.hasOwnProperty(key)) {
+                flag = __judInLine.call(this, x, y, saveLine[key])
+            }
+        }
+    }
+}
+
+function __judInLine (x, y ,lineArr) {
+    let disX, disY
+
+    for (let i = 0, len = lineArr.length - 1; i < len; i++) {
+        disX = lineArr[i + 1].x - lineArr[i].x,
+        disY = lineArr[i + 1].y - lineArr[i].y
+
+        if (disX === 0) {
+
+            if (disY > 0) {
+
+                if (
+                    y >= lineArr[i].y && y <= lineArr[i + 1].y
+                    &&
+                    x >= lineArr[i].x && x <= lineArr[i].x + this.lineWidth * 4
+                ) {
+                    console.log('diaole')
+                }
+
+            } else {
+
+                if (
+                    y >= lineArr[i + 1].y && y <= lineArr[i].y
+                    &&
+                    x >= lineArr[i].x && x <= lineArr[i].x + this.lineWidth * 4
+                ) {
+                    console.log('diaole')
+                }
+
+            }
+
+        } else if (disY === 0) {
+
+            if (disX > 0) {
+
+                if (
+                    x >= lineArr[i].x && x <= lineArr[i + 1].x
+                    &&
+                    y >= lineArr[i].y && y <= lineArr[i].y + this.lineWidth * 4
+                ) {
+                    console.log('diaole')
+                }
+
+            } else {
+
+                if (
+                    x >= lineArr[i + 1].x && x <= lineArr[i].x
+                    &&
+                    y >= lineArr[i].y && y <= lineArr[i].y + this.lineWidth * 4
+                ) {
+                    console.log('diaole')
+                }
+            }
+
+        }
     }
 }
 
@@ -208,7 +286,7 @@ function __draw () {
         }
     }
     this.context.closePath()
-    this.context.stroke()
+    this.context.fill()
 }
 
 

@@ -22,13 +22,13 @@ let getOffset = (context) => {
 }
 
 let Combination = React.createClass({
-    canvasWidth: 780,
-    canvasHeight: 780,
+    canvasWidth: 780 * window.devicePixelRatio,
+    canvasHeight: 780 *  window.devicePixelRatio,
     disTop: 52,
     disLeft: 98,
     outerPadding: 10,
     drawContext: null,
-    handleItemMouseMove (ev) {
+    itemMouseMove (ev) {
 
         const ACTIVE_EL = this.props.activeEl
 
@@ -50,12 +50,13 @@ let Combination = React.createClass({
     },
     componentDidMount () {
         this.drawContext = new Draw(this.getContext(), {
-            lineWidth: 6,
+            lineWidth: 4,
             lineJoin: 'round',
             strokeStyle: '#333',
             disTop: this.disTop,
             disLeft: this.disLeft,
-            content: this.getCanvas()
+            content: this.getCanvas(),
+            scale: window.devicePixelRatio
         })
     },
     componentWillUpdate (nextProps, nextState) {
@@ -65,7 +66,7 @@ let Combination = React.createClass({
     drawSaveContext (connectIndex) {
         this.drawContext.reDraw(connectIndex)
     },
-    handleCanvasMouseMove (ev, id) {
+    drawLineMouseMove (ev, id) {
         let activeIndex = this.props.activeIndex
 
         if (activeIndex.length == 0) return
@@ -82,9 +83,19 @@ let Combination = React.createClass({
             activeIndex[0].buttonType
         )
     },
+    drawDeleteLineMouseMove (ev) {
+
+        let pos = getOffset(this.getCanvas())
+        this.drawContext.changeColor(
+            ev.pageX - pos.x,
+            ev.pageY - pos.y
+        )
+
+    },
     handleMouseMove (ev, id) {
-        this.handleItemMouseMove(ev)
-        this.handleCanvasMouseMove(ev, id)
+        this.itemMouseMove(ev)
+        this.drawLineMouseMove(ev, id)
+        this.drawDeleteLineMouseMove(ev)
     },
     render () {
         return (
@@ -219,11 +230,14 @@ class CombinationElementComponent extends Component {
             <div
                 onMouseDown={this.props.handleMouseDown}
                 ref='buttonOuter'
+                className='combination-element'
                 style={{
                     width: '80px',
                     height: '80px',
+                    boxShadow: '#333 1px 1px 10px',
                     padding: `${this.props.outerPadding}px ${this.props.outerPadding}px`,
-                    display: this.props.itemHasAdd ? 'block' : 'none',
+                    transition: 'transform .4s, box-shadow .4s',
+                    transform: this.props.itemHasAdd ? 'scale(1, 1)' : 'scale(0, 0)',
                     opacity: .8,
                     position: 'absolute',
                     borderRadius: type == 1 ? '20px' : '100%',
@@ -238,14 +252,14 @@ class CombinationElementComponent extends Component {
                         width: '80%',
                         margin: '0 auto',
                         textAlign: 'center',
-                        color: '#fff',
+                        color: '#000',
                         height: '40px',
                         lineHeight: '40px',
                         fontSize: '14px',
                         textOverflow: 'ellipsis',
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
-                        borderBottom: '2px solid #fff',
+                        borderBottom: '2px solid #000',
                     }}
                 >
                     {this.props.value}
@@ -310,20 +324,32 @@ class InInterfaceComponent extends Component {
             <div
                 onClick={this.props.handleConnectClick}
                 onMouseDown={this.props.handleMouseDown}
+                className='interface'
                 style={{
                     width: '14px',
                     height: '14px',
-                    border: '2px solid #fff',
+                    border: '2px solid #000',
                     position: 'absolute',
                     top: '50%',
                     marginTop: '-7px',
                     display: this.props.buttonType == 0 && this.props.type == 0 ? 'none' : 'block',
                     left: this.props.buttonType == 1 ? '82px' : '0px',
-                    color: '#fff',
+                    color: '#333',
                     textAlign: 'center',
-                    lineHeight: '14px'
+                    lineHeight: '14px',
+                    borderRadius: '100%'
                 }}
             >
+                <div
+                    className='interface-bg'
+                    style={{
+                        width: '10px',
+                        height: '10px',
+                        borderRadius: '100%',
+                        margin: '2px auto',
+                    }}
+                >
+                </div>
             </div>
         )
     }
