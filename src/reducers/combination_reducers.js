@@ -11,7 +11,7 @@ const INIT_POS = '-60px',
 
 let dataItem = _getInf([{value: '我是数214421421据1'},0,0,0], '0')
 
-let algorithmItem = _getInf([{value: '我是算法'},0,0,0], '1')
+let algorithmItem = _getInf([{value: '我是算法'},0,0,0,0,0,0,0,0], '1')
 
 const INIT_LEFT = '525px'
 

@@ -76,16 +76,18 @@ export default class Draw {
                     if (disY > 0) {
                         __draw.call(
                             this,
-                            prvX - angWidth / 2 + DIS / 2, prvY + (disY - angHeight) / 2,
-                            prvX + angWidth / 2 + DIS / 2, prvY + (disY - angHeight) / 2,
-                            prvX + DIS / 2, prvY + (disY + angHeight) / 2
+                            prvX - angWidth / 2 + DIS / 1, prvY + (disY - angHeight) / 2,
+                            prvX + DIS / 1, prvY + disY / 2,
+                            prvX + angWidth / 2 + DIS / 1, prvY + (disY - angHeight) / 2,
+                            prvX + DIS / 1, prvY + (disY + angHeight) / 2
                         )
                     } else {
                         __draw.call(
                             this,
-                            prvX - angWidth / 2 + DIS / 2, prvY + (disY + angHeight) / 2,
-                            prvX + angWidth / 2 + DIS / 2, prvY + (disY + angHeight) / 2,
-                            prvX + DIS / 2, prvY + (disY - angHeight) / 2
+                            prvX - angWidth / 2 + DIS / 1, prvY + (disY + angHeight) / 2,
+                            prvX + DIS / 1, prvY + disY / 2,
+                            prvX + angWidth / 2 + DIS / 1, prvY + (disY + angHeight) / 2,
+                            prvX + DIS / 1, prvY + (disY - angHeight) / 2
                         )
                     }
 
@@ -99,6 +101,7 @@ export default class Draw {
                         __draw.call(
                             this,
                             prvX + (disX - angWidth) / 2, prvY + (disY - angHeight) / 2,
+                            prvX + disX / 2, prvY,
                             prvX + (disX - angWidth) / 2, prvY + (disY + angHeight) / 2,
                             prvX + (disX + angWidth) / 2, prvY
                         )
@@ -106,6 +109,7 @@ export default class Draw {
                         __draw.call(
                             this,
                             prvX + (disX + angWidth) / 2, prvY + (disY - angHeight) / 2,
+                            prvX + disX / 2, prvY,
                             prvX + (disX + angWidth) / 2, prvY + (disY + angHeight) / 2,
                             prvX + (disX - angWidth) / 2, prvY
                         )
@@ -188,7 +192,7 @@ function __judInLine (x, y ,lineArr) {
                     &&
                     x >= lineArr[i].x && x <= lineArr[i].x + this.lineWidth * 4
                 ) {
-                    console.log('diaole')
+                    console.log()
                 }
 
             } else {
