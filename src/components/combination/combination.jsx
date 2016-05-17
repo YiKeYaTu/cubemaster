@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import DeleteButton from './delete.jsx'
 import MoreButton from './more.jsx'
 import ConnectCanvas from './connect_canvas.jsx'
-import Draw from '../../refs/draw';
+import Draw from '../../refs/draw'
 
 let getOffset = (context) => {
     let left, top

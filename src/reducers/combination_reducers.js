@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { move } from './header_reducers.js'
-import { ADD_ACTIVE_INDEX } from '../actions/combination_action'
+import { ADD_ACTIVE_INDEX, ADD_AJAX_DATA } from '../actions/combination_action'
 
 const INIT_POS = '-60px',
     NEXT_POS = '0px',
@@ -17,6 +17,8 @@ const INIT_LEFT = '525px'
 
 function getInitData (state = dataItem, action) {
     switch (action.type) {
+        case ADD_AJAX_DATA:
+            return state
         default:
             return state
     }
@@ -24,10 +26,17 @@ function getInitData (state = dataItem, action) {
 
 function getInitAlgorithmItem (state = algorithmItem, action) {
     switch (action.type) {
+        case ADD_AJAX_DATA:
+            return state
         default:
             return state
     }
 }
+
+function _randomColor () {
+    return Math.floor(Math.random() * 60 + 150)
+}
+
 
 
 //将接受到的item数据转化成对象的形式
@@ -47,10 +56,6 @@ function _getInf (item, type) {
         }
     })
     return obj
-}
-
-function _randomColor () {
-    return Math.floor(Math.random() * 60 + 150)
 }
 
 let combinationReducers = combineReducers({

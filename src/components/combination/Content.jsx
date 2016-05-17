@@ -240,7 +240,7 @@ let Content = React.createClass({
     handleMouseOut (type, index) {
         this.handleOverAndOut(type, index, 1)
     },
-     //封装数据 算法元素的鼠标事件
+    //封装数据 算法元素的鼠标事件
     //点击元素后 将该元素加入到组合池里
     handleClick (typeId, indexId, buttonType) {
         let data = this.getData(typeId)
