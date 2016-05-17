@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import DataItem from './data_item.jsx'
 import Combination from './combination.jsx'
-import { addActiveIndex } from '../../actions/combination_action'
+import { addActiveIndex, fetchPosts } from '../../actions/combination_action'
 
 function getFreeContentHeight () {
     return window.innerHeight - 60
@@ -35,6 +35,14 @@ let Content = React.createClass({
             activeEl: null, //正在被拖动的dom元素
             connectIndex: [], // 已经连接的元素  通过树进行连接 通过接口判断是否可以连接
         }
+    },
+    componentDidMount() {
+        this.props.dispatch(fetchPosts()).then(() => {
+            this.setState({
+                dataInf: this.props.initData,
+                algorithmInf: this.props.initAlgorithmItem
+            })
+        })
     },
     //给连接点添加事件  点击后将该元素纳入state里面的activeIndex里面
     //如果activeIndex的length === 2那么就执行连接判断
@@ -346,7 +354,7 @@ let Content = React.createClass({
             this.state.connectIndex.push(child)
         }
     }, 
-    render () {  
+    render () {
         let dataInf = objToArr(this.state.dataInf),
             algorithmInf = objToArr(this.state.algorithmInf)
         return (
@@ -441,7 +449,7 @@ class Container extends Component {
     rebuildMargin () {
         let itemContent = this.refs.itemContent
         let itemContentHeight = parseFloat(getComputedStyle(itemContent)['height'])
-        const CONTAINER_HEIGHT = 160
+        const CONTAINER_HEIGHT = 130
 
         if (itemContentHeight < CONTAINER_HEIGHT) {
             itemContent.style.marginTop = (CONTAINER_HEIGHT - itemContentHeight) / 2 + 'px'

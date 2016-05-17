@@ -9,25 +9,21 @@ const INIT_POS = '-60px',
 
 
 
-let dataItem = _getInf([{value: '我是数214421421据1'},0,0,0], '0')
-
-let algorithmItem = _getInf([{value: '我是算法'},0,0,0,0,0,0,0,0], '1')
-
 const INIT_LEFT = '525px'
 
-function getInitData (state = dataItem, action) {
+function getInitData (state = {}, action) {
     switch (action.type) {
         case ADD_AJAX_DATA:
-            return state
+            return _getInf(action.json.dataset, '0')
         default:
             return state
     }
 }
 
-function getInitAlgorithmItem (state = algorithmItem, action) {
+function getInitAlgorithmItem (state = {}, action) {
     switch (action.type) {
         case ADD_AJAX_DATA:
-            return state
+            return _getInf(action.json.algorithm, '1')
         default:
             return state
     }
@@ -48,7 +44,8 @@ function _getInf (item, type) {
             type: type,
             itemLeft: type == 1 ? 460 + index % 2 * 120 + 'px' : 100 + index % 2 * 120 + 'px',
             itemTop: Math.floor(index / 2) * 120 + 'px',
-            value: item.value, //数据或者算法的名称
+            value: item.algorithm_name || item.dataset_name, //数据或者算法的名称
+            serverDaTA: item,
             right: INIT_POS, //数据或者算法左边元素的遮盖层的right
             background: `rgb(${_randomColor()}, ${_randomColor()}, ${_randomColor()})`, //元素的颜色
             itemHasAdd: false, //这个元素是否被插入到canvas上

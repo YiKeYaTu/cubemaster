@@ -21,7 +21,9 @@ export function fetchPosts () {
 
     return function (dispatch) {
 
-        return fetch('/cubemaster/servlet/ExecutePageServlet')
+        return fetch('/cubemaster/servlet/ExecutePageServlet', {
+            credentials: 'include'
+        })
             .then(response => response.json())
             .then((json) => {
                 dispatch(addAjaxData(json))
