@@ -25,6 +25,7 @@ class App extends Component {
 export default connect(function (state) {
     return {
         move: state.move,
-        INIT_LEFT: state.INIT_LEFT
+        INIT_LEFT: state.INIT_LEFT,
+        loginInf: state.loginInf
     }
 })(App)

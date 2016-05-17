@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { CHANGE_BANNER } from '../actions/index_action'
-import { move } from './header_reducers'
+import { move, loginInf } from './header_reducers'
 
 const BANNER_COUNT = 3
 const INIT_LEFT = '245'
@@ -22,6 +22,7 @@ function banner (state = {
 
 let indexReducers = combineReducers({
     move: move(INIT_LEFT),
+    loginInf,
     banner,
     INIT_LEFT: function () {
         return INIT_LEFT;

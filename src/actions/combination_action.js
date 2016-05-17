@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import urlConfig from '../refs/urlConfig'
 export const ADD_ACTIVE_INDEX = 'ADD_ACTIVE_INDEX'
 export const ADD_AJAX_DATA = 'ADD_AJAX_DATA'
 
@@ -21,7 +22,7 @@ export function fetchPosts () {
 
     return function (dispatch) {
 
-        return fetch('/cubemaster/servlet/ExecutePageServlet', {
+        return fetch(urlConfig.getDataServer, {
             credentials: 'include'
         })
             .then(response => response.json())

@@ -3,8 +3,15 @@ import { connect } from 'react-redux'
 import Header from '../components/header/content.jsx'
 import Content from '../components/index/content.jsx'
 
+let App = React.createClass({
+    render () {
+        return (
+            <AppComponent {...this.props} />
+        )
+    }
+})
 
-class App extends Component {
+class AppComponent extends Component {
     render () {
         return (
             <section 
@@ -27,6 +34,7 @@ export default connect(function (state) {
     return {
         move: state.move,
         banner: state.banner,
-        INIT_LEFT: state.INIT_LEFT
+        INIT_LEFT: state.INIT_LEFT,
+        loginInf: state.loginInf
     }
 })(App)

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { move } from './header_reducers.js'
+import { move, loginInf } from './header_reducers.js'
 import { ADD_ACTIVE_INDEX, ADD_AJAX_DATA } from '../actions/combination_action'
 
 const INIT_POS = '-60px',
@@ -57,6 +57,7 @@ function _getInf (item, type) {
 
 let combinationReducers = combineReducers({
     move: move(INIT_LEFT),
+    loginInf,
     getInitData: getInitData,
     getInitAlgorithmItem: getInitAlgorithmItem,
     INIT_LEFT: function () {

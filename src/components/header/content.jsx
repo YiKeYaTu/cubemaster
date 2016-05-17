@@ -108,6 +108,7 @@ class HeaderComponent extends Component {
                         {userButton.map(function (item, index) {
                             return (
                                 <UserButton
+                                    loginInf={this.props.loginInf}
                                     key={index}
                                     keys={index + navList.length} 
                                     {...item}
