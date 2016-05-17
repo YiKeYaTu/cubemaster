@@ -449,11 +449,14 @@ class Container extends Component {
     rebuildMargin () {
         let itemContent = this.refs.itemContent
         let itemContentHeight = parseFloat(getComputedStyle(itemContent)['height'])
-        const CONTAINER_HEIGHT = 130
+        const CONTAINER_HEIGHT = 160
 
         if (itemContentHeight < CONTAINER_HEIGHT) {
             itemContent.style.marginTop = (CONTAINER_HEIGHT - itemContentHeight) / 2 + 'px'
         }
+    }
+    componentDidUpdate(prevProps, prevState) {
+        this.rebuildMargin()
     }
     render () {  
         let dataInf = objToArr(this.props.dataInf),
