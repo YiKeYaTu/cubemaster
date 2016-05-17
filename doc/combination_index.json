@@ -1,0 +1,55 @@
+{
+
+     "protocol_id":"A-3-2",  //协议名称
+
+     "platform":"hadoop (Hadoop,java,rmi)", //算法类型?
+
+     "data": [   //上传数据的总体信息?
+
+          {"id":"id","type":"hidden(real,hidden)"},
+
+          {"id":"id","type":"hidden"},
+          {}
+     ],
+
+     "model":[  //  连线的组合树
+
+          {
+               "number":"xxx", //?
+
+               "id":"xxx", //该数据或者算法的id
+
+               "parameters":[  //该算法的参数
+
+                    {"id":"0","value":"3.0"}, //id: 算法参数id  value: 参数值 
+
+                    {"id":"1","value":"5"},
+                    {}
+               ],
+
+               "input":"dataid",  // 连入到该算法的 数据或者算法 id
+
+               "output":"dataid"  // 该算法输出的 数据或者算法 id
+          },
+
+          {
+               "number":"xxx",
+
+               "id":"xxx",
+
+               "parameters":[
+
+                    {"name":"para","value":"3.0"},
+
+                    {"name":"para","value":"5"},
+                    {}
+               ],
+
+               "input":"dataid",
+
+               "output":"dataid"
+          },
+          {}
+     ]
+
+}

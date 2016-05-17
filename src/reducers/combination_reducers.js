@@ -45,7 +45,7 @@ function _getInf (item, type) {
             itemLeft: type == 1 ? 460 + index % 2 * 120 + 'px' : 100 + index % 2 * 120 + 'px',
             itemTop: Math.floor(index / 2) * 120 + 'px',
             value: item.algorithm_name || item.dataset_name, //数据或者算法的名称
-            serverDaTA: item,
+            serverData: item,
             right: INIT_POS, //数据或者算法左边元素的遮盖层的right
             background: `rgb(${_randomColor()}, ${_randomColor()}, ${_randomColor()})`, //元素的颜色
             itemHasAdd: false, //这个元素是否被插入到canvas上

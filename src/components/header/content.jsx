@@ -66,7 +66,7 @@ class HeaderComponent extends Component {
             <section
                 style={{
                     width: '100%',
-                    background: 'rgb(84, 182, 231)',
+                    background: 'rgb(84, 182, 231)'
                 }}
             >
                 <header 

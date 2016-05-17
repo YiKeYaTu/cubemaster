@@ -28,7 +28,6 @@ class UserButtonComponent extends Component {
         let href = this.props.href,
             loginInf = this.props.loginInf
 
-            // console.log(loginInf.redirect, this.props.type)
         if (loginInf && loginInf.redirect && this.props.type === 1) {
             href = `/cubemaster/user/redirectLogin?redirect=${loginInf.redirect}`   
         }

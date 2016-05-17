@@ -29,6 +29,7 @@ let Content = React.createClass({
         return {
             dataInf: this.props.initData,
             algorithmInf: this.props.initAlgorithmItem,
+            dataOver: false,
             activeIndex: [], // 正在执行连接元素
             parentIndex: null, //正在执行连接元素的父节点
             childIndex: null,
@@ -39,6 +40,7 @@ let Content = React.createClass({
     componentDidMount() {
         this.props.dispatch(fetchPosts()).then(() => {
             this.setState({
+                dataOver: true,
                 dataInf: this.props.initData,
                 algorithmInf: this.props.initAlgorithmItem
             })
@@ -87,7 +89,7 @@ let Content = React.createClass({
             activeIndex: [],
             connectIndex: this.state.connectIndex,
         }, () => {
-            // console.log(this.state.connectIndex)
+            console.log(this.state.connectIndex)
         })
     },
     //删除root节点中的将要被插入其他子节点的节点
@@ -369,6 +371,7 @@ let Content = React.createClass({
                 handleItemMouseMove={this.handleItemMouseMove}
                 handleItemOuterClearClick={this.handleItemOuterClearClick}
                 {...this.state}
+                {...this.props}
                 dataInf={dataInf}
                 algorithmInf={algorithmInf}
             />
@@ -397,6 +400,7 @@ class ContentComponent extends Component {
     render () {  
         let dataInf = objToArr(this.props.dataInf),
             algorithmInf = objToArr(this.props.algorithmInf)
+
         return (
             <section
                 ref='container'
@@ -487,9 +491,18 @@ class Container extends Component {
                     {this.props.val}
                 </div>
                 <div
+                    style={{
+                        width: '280px',
+                        height: '160px',
+                        display: !this.props.dataOver ? 'block' : 'none',
+                    }}
+                >
+                </div>
+                <div
                     ref='itemContent'
                     style={{
                         width: '232px',
+                        display: this.props.dataOver ? 'block' : 'none',
                         maxHeight: '150px',
                         overflowY: 'scroll',
                         margin: '10px auto',
