@@ -1,4 +1,5 @@
 export default {
     getDataServer: '/cubemaster/servlet/ExecutePageServlet',
-    handleCheckLoginServer: '/cubemaster/servlet/LoginCheckServlet'
+    loginServer: '/cubemaster/servlet/LoginCheckServlet',
+    loginOutServer: '/cubemaster/servlet/LogoutServlet'
 }

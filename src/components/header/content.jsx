@@ -26,16 +26,18 @@ let navList = [{
 
 let userButton = [{
     val: '注册',
+    href: 'http://172.22.146.20/CubeApiStore/html/signUp.html',
+    type: 0,
     width: '120px',
     height: '40px',
     background: '#333',
-    href: '',
     color: 'rgb(240, 240, 240)',
     marginLeft: '300px',
     marginTop: '10px'
 }, {
     val: '登录',
     href: '',
+    type: 1,
     color: 'rgb(240, 240, 240)',
     width: '80px',
     height: '38px',
@@ -112,6 +114,7 @@ class HeaderComponent extends Component {
                                     key={index}
                                     keys={index + navList.length} 
                                     {...item}
+                                    dispatch={this.props.dispatch}
                                 />
                             )
                         }.bind(this))}

@@ -15,6 +15,7 @@ let store = createStore(
     )
 )
 
+
 store.dispatch(getLoginInf()).then(() => {
 
     let res = store.getState()
@@ -22,7 +23,7 @@ store.dispatch(getLoginInf()).then(() => {
     let redirect = res && res.loginInf && res.loginInf.redirect
 
     if (redirect) {
-        window.location = redirect
+        window.location = `/cubemaster/user/redirectLogin?redirect=${redirect}`
     }
 
 })

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { getLoginInf } from '../../actions/header_action';
 
 let UserButton = React.createClass({
     render () {
@@ -14,6 +15,7 @@ let UserButton = React.createClass({
 
         return (
             <UserInput 
+                loginInf={loginInf}
                 {...this.props}
             />
         )
@@ -22,6 +24,15 @@ let UserButton = React.createClass({
 
 class UserButtonComponent extends Component {
     render () {
+
+        let href = this.props.href,
+            loginInf = this.props.loginInf
+
+            // console.log(loginInf.redirect, this.props.type)
+        if (loginInf && loginInf.redirect && this.props.type === 1) {
+            href = `/cubemaster/user/redirectLogin?redirect=${loginInf.redirect}`   
+        }
+
         return (
             <li
                 style={{
@@ -45,9 +56,9 @@ class UserButtonComponent extends Component {
                         fontSize: '14px',
                         transition: 'all .4s'
                     }}
-                    href={this.props.href || '#'}
+                    href={href}
                 >
-                    {this.props.val}
+                    {loginInf ? this.props.val : '加载中...'}
                 </a>
             </li>
         )
@@ -56,8 +67,8 @@ class UserButtonComponent extends Component {
 
 let UserButtonTypeTwo = React.createClass({
     handleClick () {
-        if (this.props.val === '登录') { 
-            
+        if (this.props.type === 1) {
+            this.props.dispatch(getLoginInf(true))
         }
     },
     render () {
@@ -73,12 +84,13 @@ let UserButtonTypeTwo = React.createClass({
 class UserButtonTypeTwoComponent extends Component {
     render () {
 
-        let val = this.props.val
+        let type = this.props.type
 
         return (
             <UserButtonComponent 
                 {...this.props}
-                val={val === '注册' ? this.props.loginInf.user_name : '登出'}
+                val={type === 0 ? this.props.loginInf.user_name : '登出'}
+                href='#'
             />
         )
     }

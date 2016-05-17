@@ -21,22 +21,35 @@ export function checkLoginInf (res) {
     }
 }
 
-export function loginOut (id) {
+export function loginOut () {
     return {
-        type: LOGIN_OUT,
-        id
+        type: LOGIN_OUT
     }
 }
 
-export function getLoginInf (loginOut) {
+export function getLoginInf (out) {
+
+    let url = urlConfig.loginServer
+
+    if (out) {
+        url = urlConfig.loginOutServer
+    }
+
     return function (dispatch) {
-        return fetch(urlConfig.handleCheckLoginServer, {
+        
+        return fetch(url, {
             credentials: 'include'
         })
-            .then((res) => res.json())
             .then((res) => {
-                if (loginOut) {
-
+                if (out) {
+                    return null
+                } else {
+                    return res.json()
+                }
+            })
+            .then((res) => {
+                if (out) {
+                    dispatch(loginOut())
                 } else {
                     dispatch(checkLoginInf(res))
                 }
