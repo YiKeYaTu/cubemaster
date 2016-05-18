@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import DeleteButton from './delete.jsx'
 import MoreButton from './more.jsx'
+import MoreContent from './more_content.jsx'
 import ConnectCanvas from './connect_canvas.jsx'
 import Draw from '../../refs/draw'
 
@@ -268,6 +269,9 @@ class CombinationElementComponent extends Component {
                     {...this.props}
                 />
                 <MoreButton 
+                    {...this.props}
+                />
+                <MoreContent 
                     {...this.props}
                 />
                 <InInterface 

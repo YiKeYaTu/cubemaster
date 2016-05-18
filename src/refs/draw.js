@@ -10,6 +10,7 @@ export default class Draw {
         this.disTop = conf.disTop
         this.disLeft = conf.disLeft
         this.saveLine = {}
+        
         if (conf.scale) {
             this.context.scale(conf.scale, conf.scale)
         }

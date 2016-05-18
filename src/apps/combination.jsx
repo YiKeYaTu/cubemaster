@@ -23,9 +23,9 @@ class App extends Component {
 }
 
 export default connect(function (state) {
+    
     return {
         move: state.move,
-        // getDataOver: state.getDataOver,
         initData: state.getInitData,
         initAlgorithmItem: state.getInitAlgorithmItem,
         INIT_LEFT: state.INIT_LEFT,

@@ -55,6 +55,24 @@ let Content = React.createClass({
             parent = this.state.parentIndex,
             child = this.state.childIndex
 
+        activeIndex.forEach((item) => {
+
+            if (item.type == 1) {
+
+                let target = this.state.algorithmInf[item.type + item.index]
+
+                if (target.serverData.parameters.length > 0
+                    &&
+                    !target.showParameter
+                ) {
+
+                    this.handleShowMore(item.type, item.index)
+
+                }
+            }
+
+        })
+
         let createStateConnectNode = this.createStateConnectNode,
             clearRootChild = this.clearRootChild,
             judInterface = this.judInterface
@@ -89,7 +107,7 @@ let Content = React.createClass({
             activeIndex: [],
             connectIndex: this.state.connectIndex,
         }, () => {
-            console.log(this.state.connectIndex)
+            // console.log(this.state.connectIndex)
         })
     },
     //删除root节点中的将要被插入其他子节点的节点
@@ -179,9 +197,18 @@ let Content = React.createClass({
     },
     //判断两点是否可以连接  并且拿出父节点
     handleConnectButtonJudConnect (activeIndex) {
+
+        if (activeIndex[0].type + activeIndex[0].index 
+            === 
+            activeIndex[1].type + activeIndex[1].index
+        ) {
+            return this.cannotConnect('同一算法无法连接')
+        }
+
         let connectIndex = this.state.connectIndex
         let flag = 200
         let parent
+
         if (activeIndex[0].buttonType === activeIndex[1].buttonType) { //是不是不同的接口 左  右
             flag = 400
             return flag
@@ -214,6 +241,7 @@ let Content = React.createClass({
             buttonType: buttonType,
             pos: pos
         })
+
         if (activeIndex.length === 2) {
             //交换button位置 
             if (activeIndex[0].buttonType == 0) {
@@ -228,10 +256,43 @@ let Content = React.createClass({
                 this.updateConnectIndex(activeIndex)
             }
         } else if (activeIndex.length === 1) {
+
             this.setState({
                 activeIndex: activeIndex
             })
+
         }
+    },
+    handleSetParameters (typeId, indexId, parameter_id, val) {
+
+        let target = this.state.algorithmInf[typeId + indexId]
+
+        if (target.serverData.parameters) {
+            target.serverData.parameters = target.serverData.parameters.map((item, index) => {
+
+                if (item.parameter_id == parameter_id) {
+                    item.parameter_value = val
+                }
+
+                return item
+
+            })
+        }
+
+        this.setState({
+            algorithmInf: this.state.algorithmInf
+        })
+
+    },
+    handleShowMore (typeId, indexId) {
+
+        let flag = this.state.algorithmInf[typeId + indexId].showParameter
+
+        this.state.algorithmInf[typeId + indexId].showParameter = !flag
+        this.setState({
+            algorithmInf: this.state.algorithmInf
+        })
+
     },
     //封装数据 算法元素的鼠标事件
     handleOverAndOut (typeId, indexId, type) {
@@ -370,6 +431,8 @@ let Content = React.createClass({
                 handleItemMouseUp={this.handleItemMouseUp}
                 handleItemMouseMove={this.handleItemMouseMove}
                 handleItemOuterClearClick={this.handleItemOuterClearClick}
+                handleSetParameters={this.handleSetParameters}
+                handleShowMore={this.handleShowMore}
                 {...this.state}
                 {...this.props}
                 dataInf={dataInf}
