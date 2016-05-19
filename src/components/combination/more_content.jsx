@@ -16,16 +16,17 @@ class MoreContentComponent extends Component {
     render () {
         let parameters = this.props.serverData.parameters,
             type = this.props.type,
-            indexId = this.props.index
-            
+            indexId = this.props.index,
+            countParametersLen = this.props.countParameters ? this.props.countParameters.len : 0
+
         return (
             <div
                 style={{
                     width: '100px',
-                    height: '100px',
                     padding: '10px 10px',
                     background: this.props.background,
                     borderRadius: '20px',
+                    opacity: '0.8',
                     transition: 'transform .4s',
                     transform: this.props.showParameter ? 'scale(1, 1)' : 'scale(0, 0)',
                     boxShadow: '#333 1px 1px 10px',
@@ -48,16 +49,14 @@ class MoreContentComponent extends Component {
                     <span
                         style={{
                             marginLeft: '4px',
-                            color: 'red'
+                            color: countParametersLen ? '#333' : 'red',
                         }}
-                    >0/{parameters && parameters.length}</span>
+                    >{countParametersLen}/{parameters && parameters.length}</span>
                 </h3>
                 <div 
                     style={{
                         width: '100%',
                         paddingTop: '10px',
-                        height: '80px',
-                        overflowY: 'scroll'
                     }}
                 >
                 {

@@ -30,6 +30,15 @@ let Content = React.createClass({
             dataInf: this.props.initData,
             algorithmInf: this.props.initAlgorithmItem,
             dataOver: false,
+            res: {
+                '20': {
+                    connectInterface: {
+                        inInterface: true,
+                        outInterface: false
+                    },
+                    last: true
+                }
+            },
             activeIndex: [], // 正在执行连接元素
             parentIndex: null, //正在执行连接元素的父节点
             childIndex: null,
@@ -128,6 +137,8 @@ let Content = React.createClass({
             data = this.state.dataInf
         } else if (typeId == 1) {
             data = this.state.algorithmInf
+        } else if (typeId == 2) {
+            data = this.state.res
         }
         if (buttonType == 0) {
             return !data[id].connectInterface || data[id].connectInterface.inInterface
@@ -155,6 +166,8 @@ let Content = React.createClass({
             data = this.state.dataInf[inf.type + inf.index]
         } else if (type == 1) {
             data = this.state.algorithmInf[inf.type + inf.index]
+        } else if (type == 2) {
+            data = this.state.res[inf.type + inf.index]
         }
         data.connectInterface = {
             inInterface: buttonType === 1 ? true : false,
@@ -266,6 +279,33 @@ let Content = React.createClass({
     handleSetParameters (typeId, indexId, parameter_id, val) {
 
         let target = this.state.algorithmInf[typeId + indexId]
+
+        if (!target.countParameters) {
+
+            target.countParameters = {
+                len: 0
+            }
+
+        }
+
+        if (!target.countParameters[parameter_id]) {
+
+            if (val != '') {
+
+                target.countParameters[parameter_id] = {}
+                target.countParameters.len++
+
+            }
+
+        } else {
+
+            target.countParameters[parameter_id].val = val
+            if (val == '') {
+                delete target.countParameters[parameter_id]
+                target.countParameters.len--
+            }
+
+        }
 
         if (target.serverData.parameters) {
             target.serverData.parameters = target.serverData.parameters.map((item, index) => {
@@ -496,6 +536,7 @@ class ContentComponent extends Component {
                     style={{
                         width: '800px',
                         float: 'right',
+                        marginRight: '10px'
                     }}
                 >    
                     <Combination
