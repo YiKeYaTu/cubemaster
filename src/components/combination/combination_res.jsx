@@ -35,9 +35,13 @@ let CombinationRes = React.createClass({
 
 class CombinationResComponent extends Component {
     render () {
+
+        let connect = this.props.inf['20'].connectInterface.inInterface
+
         return (
             <div
                 onClick={this.props.handleClick}
+                className='combination-res-component'
                 style={{
                     width: '16px',
                     height: '16px',
@@ -51,6 +55,18 @@ class CombinationResComponent extends Component {
                     marginTop: '-10px'
                 }}
             >
+                <div
+                    className='combination-res-component-hidden'
+                    style={{
+                        width: '12px',
+                        height: '12px',
+                        background: 'rgb(84, 182, 231)',
+                        display: connect ? 'none' : 'block',
+                        borderRadius: '100%',
+                        margin: '2px 2px'
+                    }}
+                >
+                </div>
             </div>
         )
     }

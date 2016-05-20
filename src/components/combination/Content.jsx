@@ -116,7 +116,7 @@ let Content = React.createClass({
             activeIndex: [],
             connectIndex: this.state.connectIndex,
         }, () => {
-            // console.log(this.state.connectIndex)
+            console.log(this.state.connectIndex)
         })
     },
     //删除root节点中的将要被插入其他子节点的节点
@@ -372,6 +372,45 @@ let Content = React.createClass({
         this.chooseDataToset(typeId, data)
         this.removeConnectIndex(typeId, indexId)
     },
+    //点击线段删除线段
+    handleRemoveLine (typeId, indexId) {
+        let connectIndex = this.state.connectIndex
+
+        let parent, child, rootIndex
+        console.log(typeId, indexId)
+
+        connectIndex.forEach((item, index) => {
+            this.walkTree(item, (node) => {
+                if (node.data.type == typeId && node.data.index == indexId) {
+                    parent = node
+                    child = parent.child[0]
+
+                    if (parent === item) {
+                        rootIndex = index
+                    }
+
+                }
+
+            })
+        })
+
+        parent.child.pop()
+        parent.data.connectInterface.outInterface = true
+        child.data.connectInterface.inInterface = true
+
+        if (child.child[0]) {
+            connectIndex.push(child)
+        }
+
+        if (rootIndex >= 0) {
+            connectIndex.splice(rootIndex, 1)
+        }
+
+        this.setState({
+            connectIndex: connectIndex
+        })
+
+    },
     //点击元素后 执行拖动的准备工作
     handleItemMouseDown (typeId, indexId, downPos) {
         let data = this.getData(typeId)
@@ -453,7 +492,7 @@ let Content = React.createClass({
                 }
             })
         }
-        if (child && child.child) {
+        if (child && child.child[0]) {
             this.state.connectIndex.push(child)
         }
     }, 
@@ -473,6 +512,7 @@ let Content = React.createClass({
                 handleItemOuterClearClick={this.handleItemOuterClearClick}
                 handleSetParameters={this.handleSetParameters}
                 handleShowMore={this.handleShowMore}
+                handleRemoveLine={this.handleRemoveLine}
                 {...this.state}
                 {...this.props}
                 dataInf={dataInf}
@@ -507,10 +547,10 @@ class ContentComponent extends Component {
         return (
             <section
                 ref='container'
+                className='content-outer'
                 style={{
                     width: '1160px',
-                    margin: '0 auto',
-                    overflow: 'hidden',
+                    margin: '0 auto'
                 }}
             >
                 <section

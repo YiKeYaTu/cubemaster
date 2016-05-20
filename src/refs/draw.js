@@ -32,8 +32,8 @@ export default class Draw {
                         child.data.pos.x,
                         child.data.pos.y + this.disTop,
                         true, //不开启反转
-                        item.data.type + item.data.index, 
-                        child.data.type + child.data.index
+                        item.data.type + '.' + item.data.index, 
+                        child.data.type + '.' + child.data.index
                     )
                 }
                 item = child
@@ -164,21 +164,23 @@ export default class Draw {
             this.content.height
         )
     }
-    changeColor (x, y) {
+    getFocusLineId (x, y) {
         const saveLine = this.saveLine
 
         let flag
 
         for (let key in saveLine) {
             if (saveLine.hasOwnProperty(key)) {
-                flag = __judInLine.call(this, x, y, saveLine[key])
+                flag = __judInLine.call(this, x, y, saveLine[key], key)
             }
+            if (flag) return flag
         }
     }
 }
 
-function __judInLine (x, y ,lineArr) {
+function __judInLine (x, y ,lineArr, id) {
     let disX, disY
+    const DEV = 8
 
     for (let i = 0, len = lineArr.length - 1; i < len; i++) {
         disX = lineArr[i + 1].x - lineArr[i].x,
@@ -191,9 +193,9 @@ function __judInLine (x, y ,lineArr) {
                 if (
                     y >= lineArr[i].y && y <= lineArr[i + 1].y
                     &&
-                    x >= lineArr[i].x && x <= lineArr[i].x + this.lineWidth * 4
+                    x >= lineArr[i].x && x <= lineArr[i].x + this.lineWidth * DEV
                 ) {
-                    console.log()
+                    return id
                 }
 
             } else {
@@ -201,9 +203,9 @@ function __judInLine (x, y ,lineArr) {
                 if (
                     y >= lineArr[i + 1].y && y <= lineArr[i].y
                     &&
-                    x >= lineArr[i].x && x <= lineArr[i].x + this.lineWidth * 4
+                    x >= lineArr[i].x && x <= lineArr[i].x + this.lineWidth * DEV
                 ) {
-                    console.log('diaole')
+                    return id
                 }
 
             }
@@ -215,9 +217,9 @@ function __judInLine (x, y ,lineArr) {
                 if (
                     x >= lineArr[i].x && x <= lineArr[i + 1].x
                     &&
-                    y >= lineArr[i].y && y <= lineArr[i].y + this.lineWidth * 4
+                    y >= lineArr[i].y && y <= lineArr[i].y + this.lineWidth * DEV
                 ) {
-                    console.log('diaole')
+                    return id
                 }
 
             } else {
@@ -225,9 +227,9 @@ function __judInLine (x, y ,lineArr) {
                 if (
                     x >= lineArr[i + 1].x && x <= lineArr[i].x
                     &&
-                    y >= lineArr[i].y && y <= lineArr[i].y + this.lineWidth * 4
+                    y >= lineArr[i].y && y <= lineArr[i].y + this.lineWidth * DEV
                 ) {
-                    console.log('diaole')
+                    return id
                 }
             }
 

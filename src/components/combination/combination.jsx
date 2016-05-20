@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import CombinationElement from './combination_element.jsx'
 import ConnectCanvas from './connect_canvas.jsx'
 import CombinationRes from './combination_res.jsx'
+import CombinationStart from './combination_start.jsx'
 import Draw from '../../refs/draw'
 import getOffset from '../../refs/getOffset'
 
@@ -12,6 +13,7 @@ let Combination = React.createClass({
     disLeft: 98,
     outerPadding: 10,
     drawContext: null,
+    focusParent: null,
     itemMouseMove (ev) {
 
         const ACTIVE_EL = this.props.activeEl
@@ -73,16 +75,38 @@ let Combination = React.createClass({
     drawDeleteLineMouseMove (ev) {
 
         let pos = getOffset(this.getCanvas())
-        this.drawContext.changeColor(
+        let id = this.drawContext.getFocusLineId(
             ev.pageX - pos.x,
             ev.pageY - pos.y
         )
+
+        if (id) {
+            let id1 = id.split('&')[0]
+            this.focusParent = {
+                type: id1.split('.')[0],
+                index: id1.split('.')[1],
+            }
+        } else {
+            this.focusParent = null
+        }   
 
     },
     handleMouseMove (ev, id) {
         this.itemMouseMove(ev)
         this.drawLineMouseMove(ev, id)
         this.drawDeleteLineMouseMove(ev)
+    },
+    handleRemoveLine () {
+
+        let focusParent = this.focusParent
+
+        if (focusParent) {
+            this.props.handleRemoveLine(
+                focusParent.type, 
+                focusParent.index
+            )
+        }
+
     },
     render () {
         return (
@@ -97,6 +121,7 @@ let Combination = React.createClass({
                 canvasHeight={this.canvasHeight}
                 handleMouseMove={this.handleMouseMove}
                 outerPadding={this.outerPadding}
+                handleRemoveLine={this.handleRemoveLine}
             />
         )
     }
@@ -153,6 +178,10 @@ class CombinationComponent extends Component {
                         outerPadding={this.props.outerPadding}
                         getContainerffset={this.props.getContainerffset}
                         handleConnectButtonClick={this.props.handleConnectButtonClick}
+                    />
+                    <CombinationStart
+                        connectIndex={this.props.connectIndex}
+                        dispatch={this.props.dispatch}
                     />
                     <ConnectCanvas
                         ref='canvas' 

@@ -19,3 +19,15 @@ body {
 .interface:hover .interface-bg {
     background: #000;
 }
+.content-outer::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.combination-start-component:hover {
+    color: #f5f5f5 !important;
+    background: rgb(84, 182, 231) !important;
+}
+.combination-res-component:hover .combination-res-component-hidden{
+    display: block !important;
+}
