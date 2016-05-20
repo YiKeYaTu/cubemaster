@@ -377,7 +377,6 @@ let Content = React.createClass({
         let connectIndex = this.state.connectIndex
 
         let parent, child, rootIndex
-        console.log(typeId, indexId)
 
         connectIndex.forEach((item, index) => {
             this.walkTree(item, (node) => {

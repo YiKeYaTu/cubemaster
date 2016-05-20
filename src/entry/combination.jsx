@@ -14,17 +14,17 @@ let store = createStore(
     )
 )
 
-store.dispatch(getLoginInf()).then(() => {
+// store.dispatch(getLoginInf()).then(() => {
 
-    let res = store.getState()
+//     let res = store.getState()
 
-    let redirect = res && res.loginInf && res.loginInf.redirect
+//     let redirect = res && res.loginInf && res.loginInf.redirect
 
-    if (redirect) {
-        window.location = `/cubemaster/user/redirectLogin?redirect=${redirect}`
-    }
+//     if (redirect) {
+//         window.location = `/cubemaster/user/redirectLogin?redirect=${redirect}`
+//     }
 
-})
+// })
 
 render(
     <Provider store={store}>

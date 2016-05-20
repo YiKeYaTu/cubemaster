@@ -14,6 +14,7 @@ let Combination = React.createClass({
     outerPadding: 10,
     drawContext: null,
     focusParent: null,
+    lastDrawIsFocuse: false,
     itemMouseMove (ev) {
 
         const ACTIVE_EL = this.props.activeEl
@@ -75,18 +76,32 @@ let Combination = React.createClass({
     drawDeleteLineMouseMove (ev) {
 
         let pos = getOffset(this.getCanvas())
-        let id = this.drawContext.getFocusLineId(
+        let inf = this.drawContext.getFocusLineInf(
             ev.pageX - pos.x,
             ev.pageY - pos.y
         )
 
-        if (id) {
+        let id = inf && inf.id,
+            lineArr = inf && inf.lineArr
+
+        if (id && lineArr) {
+
+            this.lastDrawIsFocuse = true
+
             let id1 = id.split('&')[0]
+
             this.focusParent = {
                 type: id1.split('.')[0],
                 index: id1.split('.')[1],
             }
+            this.drawContext.drawWithColor(lineArr, 'red')
         } else {
+
+            if (this.lastDrawIsFocuse) {
+                this.lastDrawIsFocuse = false
+                this.drawContext.reDraw(this.props.connectIndex)
+            }
+
             this.focusParent = null
         }   
 

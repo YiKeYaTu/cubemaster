@@ -20,6 +20,7 @@ export default class Draw {
         let child
 
         this.clear()
+        this.saveLine = {}
 
         connectIndex.forEach((item, index) => {
             while (item) {
@@ -39,6 +40,17 @@ export default class Draw {
                 item = child
             }  
         })
+    }
+    drawWithColor (lineArr, color) {
+        let temp = this.context.strokeStyle
+        this.context.strokeStyle = color
+        this.lineTo(
+            lineArr[0].x, 
+            lineArr[0].y,
+            lineArr.slice(-1)[0].x,
+            lineArr.slice(-1)[0].y,
+            true
+        )
     }
     drawAng (beginx, beginy, oldwayArr, r) {
 
@@ -164,16 +176,16 @@ export default class Draw {
             this.content.height
         )
     }
-    getFocusLineId (x, y) {
+    getFocusLineInf (x, y) {
         const saveLine = this.saveLine
 
-        let flag
+        let inf
 
         for (let key in saveLine) {
             if (saveLine.hasOwnProperty(key)) {
-                flag = __judInLine.call(this, x, y, saveLine[key], key)
+                inf = __judInLine.call(this, x, y, saveLine[key], key)
             }
-            if (flag) return flag
+            if (inf) return inf
         }
     }
 }
@@ -195,7 +207,10 @@ function __judInLine (x, y ,lineArr, id) {
                     &&
                     x >= lineArr[i].x && x <= lineArr[i].x + this.lineWidth * DEV
                 ) {
-                    return id
+                    return {
+                        lineArr: lineArr,
+                        id: id
+                    }
                 }
 
             } else {
@@ -205,7 +220,10 @@ function __judInLine (x, y ,lineArr, id) {
                     &&
                     x >= lineArr[i].x && x <= lineArr[i].x + this.lineWidth * DEV
                 ) {
-                    return id
+                    return {
+                        lineArr: lineArr,
+                        id: id
+                    }
                 }
 
             }
@@ -219,7 +237,10 @@ function __judInLine (x, y ,lineArr, id) {
                     &&
                     y >= lineArr[i].y && y <= lineArr[i].y + this.lineWidth * DEV
                 ) {
-                    return id
+                    return {
+                        lineArr: lineArr,
+                        id: id
+                    }
                 }
 
             } else {
@@ -229,7 +250,10 @@ function __judInLine (x, y ,lineArr, id) {
                     &&
                     y >= lineArr[i].y && y <= lineArr[i].y + this.lineWidth * DEV
                 ) {
-                    return id
+                    return {
+                        lineArr: lineArr,
+                        id: id
+                    }
                 }
             }
 
