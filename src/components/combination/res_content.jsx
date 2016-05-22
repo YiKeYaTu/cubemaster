@@ -17,6 +17,7 @@ let ResContent = React.createClass({
 
 class ResContentComponent extends Component {
     render () {
+        console.log(this.props.resContentWapperShow)
         return (
             <div
                 onClick={this.props.handleWapperClick}
@@ -25,7 +26,7 @@ class ResContentComponent extends Component {
                     width: '100%',
                     height: '100%',
                     transition: 'transform .4s',
-                    transform: !this.props.resContentWapperShow ? 'scale(1, 1)' : 'scale(0, 0)',
+                    transform: this.props.resContentWapperShow ? 'scale(1, 1)' : 'scale(0, 0)',
                     position: 'fixed',
                     zIndex: '1',
                     top: 0,
