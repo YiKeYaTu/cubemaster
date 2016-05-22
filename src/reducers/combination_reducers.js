@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { move, loginInf } from './header_reducers.js'
-import { ADD_ACTIVE_INDEX, ADD_AJAX_DATA } from '../actions/combination_action'
+import { ADD_ACTIVE_INDEX, ADD_AJAX_DATA, CONTROL_RES_WAPPER, SEND_CONNECT } from '../actions/combination_action'
 
 const INIT_POS = '-60px',
     NEXT_POS = '0px',
@@ -10,6 +10,24 @@ const INIT_POS = '-60px',
 
 
 const INIT_LEFT = '525px'
+
+function controlcontrolResWapper (state = false, action) {
+    switch (action.type) {
+        case CONTROL_RES_WAPPER:
+            return !state
+        default:
+            return state
+    }
+}
+
+function runServerRes (state = [], action) {
+    switch (action.type) {
+        case SEND_CONNECT:
+            return [action.json]
+        default: 
+            return state
+    }
+}
 
 function getInitData (state = {}, action) {
     switch (action.type) {
@@ -66,7 +84,9 @@ let combinationReducers = combineReducers({
     move: move(INIT_LEFT),
     loginInf: loginInf,
     getInitData: getInitData,
+    runServerRes: runServerRes,
     getInitAlgorithmItem: getInitAlgorithmItem,
+    controlcontrolResWapper: controlcontrolResWapper,
 
     INIT_LEFT: function () {
 

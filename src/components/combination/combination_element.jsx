@@ -54,7 +54,7 @@ class CombinationElementComponent extends Component {
                     boxShadow: '#333 1px 1px 10px',
                     padding: `${this.props.outerPadding}px ${this.props.outerPadding}px`,
                     transition: 'transform .4s, box-shadow .4s',
-                    // transform: this.props.itemHasAdd ? 'scale(1, 1)' : 'scale(0, 0)',
+                    transform: this.props.itemHasAdd ? 'scale(1, 1)' : 'scale(0, 0)',
                     opacity: .8,
                     position: 'absolute',
                     borderRadius: type == 1 ? '20px' : '100%',

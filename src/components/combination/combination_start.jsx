@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { fetchConnect } from '../../actions/combination_action';
+import { fetchConnect, controlResWapper } from '../../actions/combination_action'
+
 
 let CombinationStart = React.createClass({
     shouldComponentUpdate() {
@@ -25,30 +26,36 @@ let CombinationStart = React.createClass({
                 })
             }
 
-            if (!runFlag) return 
+            if (!runFlag) {
 
-            item = item.child[0]
+            } else {
 
-            while (item && !item.data.last) {
-
-                if (!lastItem) {
-                    model.push({
-                        id: item.data.serverData.algorithm_id,
-                        parameters: item.data.serverData.parameters,
-                        input: data[index].id,
-                        output: item.child[0] && !item.child[0].data.last && item.child[0].data.serverData.algorithm_id,
-                    })
-                } else {
-                    model.push({
-                        id: item.data.serverData.algorithm_id,
-                        parameters: item.data.serverData.parameters,
-                        input: lastItem.data.serverData.algorithm_id,
-                        output: item.child[0] && !item.child[0].data.last && item.child[0].data.serverData.algorithm_id,
-                    })
-                }
-                lastItem = item
                 item = item.child[0]
+
+                while (item && !item.data.last) {
+
+                    if (!lastItem) {
+                        model.push({
+                            id: item.data.serverData.algorithm_id,
+                            parameters: item.data.serverData.parameters,
+                            input: data[index].id,
+                            output: item.child[0] && !item.child[0].data.last && item.child[0].data.serverData.algorithm_id,
+                        })
+                    } else {
+                        model.push({
+                            id: item.data.serverData.algorithm_id,
+                            parameters: item.data.serverData.parameters,
+                            input: lastItem.data.serverData.algorithm_id,
+                            output: item.child[0] && !item.child[0].data.last && item.child[0].data.serverData.algorithm_id,
+                        })
+                    }
+                    lastItem = item
+                    item = item.child[0]
+                }
+
             }
+
+            this.props.dispatch(controlResWapper())
 
         })
 

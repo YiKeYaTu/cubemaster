@@ -2,8 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Header from '../components/header/content.jsx'
 import Content from '../components/combination/Content.jsx'
+import ResContent from '../components/combination/res_content.jsx'
 
-class App extends Component {
+let App = React.createClass({
+    render () {
+        return (
+            <AppComponent 
+                {...this.props}
+            />
+        )
+    }
+})
+
+class AppComponent extends Component {
     render () {
         return (
             <section
@@ -16,6 +27,11 @@ class App extends Component {
                 />
                 <Content 
                     {...this.props}
+                />  
+                <ResContent
+                    resContentWapperShow={this.props.resContentWapperShow} 
+                    dispatch={this.props.dispatch}
+                    resContentList={this.props.resContentList}
                 />
             </section>
         )
@@ -23,8 +39,9 @@ class App extends Component {
 }
 
 export default connect(function (state) {
-    
     return {
+        resContentWapperShow: state.controlcontrolResWapper,
+        resContentList: state.runServerRes,
         move: state.move,
         initData: state.getInitData,
         initAlgorithmItem: state.getInitAlgorithmItem,
