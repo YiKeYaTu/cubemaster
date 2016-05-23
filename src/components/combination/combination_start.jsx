@@ -6,6 +6,20 @@ let CombinationStart = React.createClass({
     shouldComponentUpdate() {
         return false  
     },
+    judRun (data, model) {
+        return true
+        console.log(data, model)
+        if (data.length === 0 
+            ||
+            model.length === 0
+            ||
+            !model.slice(-1).output
+        ) {
+            return false
+        } else {
+            return true
+        }
+    },
     handleClick () {
 
         let connectIndex = this.props.connectIndex
@@ -55,9 +69,15 @@ let CombinationStart = React.createClass({
 
             }
 
-            this.props.dispatch(controlResWapper())
-
         })
+
+        if (!this.judRun(data, model)) {
+            runFlag = false
+        }
+        runFlag = true
+        console.log(runFlag)
+
+        this.props.dispatch(controlResWapper())
 
         runFlag && this.props.dispatch(fetchConnect({
             protocol_id: 'A-3-2',

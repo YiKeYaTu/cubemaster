@@ -25,16 +25,6 @@ let navList = [{
 }]
 
 let userButton = [{
-    val: '注册',
-    href: 'http://172.22.146.20/CubeApiStore/html/signUp.html',
-    type: 0,
-    width: '120px',
-    height: '40px',
-    background: '#333',
-    color: 'rgb(240, 240, 240)',
-    marginLeft: '300px',
-    marginTop: '10px'
-}, {
     val: '登录',
     href: '',
     type: 1,
@@ -43,6 +33,16 @@ let userButton = [{
     height: '38px',
     marginLeft: '10px',
     border: '1px solid #fff',
+    marginTop: '10px'
+}, {
+    val: '注册',
+    href: 'http://172.22.146.20/CubeApiStore/html/signUp.html',
+    type: 0,
+    width: '120px',
+    height: '40px',
+    background: 'rgb(84, 182, 231)',
+    color: 'rgb(240, 240, 240)',
+    marginLeft: '0px',
     marginTop: '10px'
 }]
 
@@ -66,7 +66,7 @@ class HeaderComponent extends Component {
             <section
                 style={{
                     width: '100%',
-                    background: 'rgb(84, 182, 231)'
+                    background: '#333'
                 }}
             >
                 <header 

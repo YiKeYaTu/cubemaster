@@ -17,7 +17,6 @@ let ResContent = React.createClass({
 
 class ResContentComponent extends Component {
     render () {
-        console.log(this.props.resContentWapperShow)
         return (
             <div
                 onClick={this.props.handleWapperClick}
@@ -184,7 +183,7 @@ class LisetComponent extends Component {
                 }}
             >
                 {
-                    res.map((item, index) => {
+                    res && res.map((item, index) => {
                         return (
                             <li
                                 style={{

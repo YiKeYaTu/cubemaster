@@ -35,7 +35,7 @@ class UserButtonComponent extends Component {
         return (
             <li
                 style={{
-                    float: 'left',
+                    float: 'right',
                     marginLeft: this.props.marginLeft
                 }}
             >
