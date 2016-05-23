@@ -1,0 +1,79 @@
+{
+
+    "dataset":{ 
+
+            "dataset_id": "xx",
+
+            "dataset_name": "iris",
+
+           "associated_tasks":"abc",
+
+           "attribute_characteristics":"abc",
+
+           "description":"asdasdasd",
+
+           "number_examples": "150",
+
+            "submit_datetime":"2015-06-01 12:43",
+
+            "area":"asd",
+
+            "number_download": "10",
+
+            "file_path":"xx",
+
+            "ispublic":"0|1",
+
+     },
+
+    "attributes":[
+
+        {
+
+            "attribute_id":"xx",
+
+            "attribute_name":"xx",
+
+            "attribute_type":"xx",
+
+            "attribute_label":"xx",
+
+            "range":"xx",
+
+            "missing":"xx",
+
+            "comment":"xx"
+
+        },
+
+        {
+
+            "attribute_id":"xx",
+
+            "attribute_name":"xx",
+
+            "attribute_type":"xx",
+
+            "attribute_label":"xx",
+
+            "range":"xx",
+
+            "missing":"xx",
+
+            "comment":"xx"
+
+        }
+
+    ]
+
+},
+
+{
+
+ 
+
+}
+
+]
+
+}

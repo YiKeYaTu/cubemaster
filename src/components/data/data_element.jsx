@@ -16,11 +16,36 @@ class DataElementComponent extends Component {
         let dataset = this.props.dataset.data.dataset,
             finish = this.props.dataset.finish
 
+        let showDataInf
+
+        if (finish && dataset.length > 0) {
+            showDataInf = false
+        } else if (finish && dataset.length === 0) {
+            showDataInf = true
+        }
+
         return (
-            <section>
+            <section
+                style={{
+                    overflow: 'hidden'
+                }}
+            >
+                <div
+                    style={{
+                        display: finish ? 'none' : 'block'
+                    }}
+                >
+                    加载中...
+                </div>
+                <div
+                    style={{
+                        display: showDataInf ? 'block' : 'none',
+                    }}
+                >
+                    暂无数据
+                </div>
             {
                 finish && dataset && dataset.map((item, index) => {
-                    console.log(item)
                     return (
                         <div
                             className='data-element'

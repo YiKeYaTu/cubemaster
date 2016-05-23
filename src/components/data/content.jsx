@@ -30,9 +30,23 @@ class ContentComponent extends Component {
                         overflow: 'hidden',
                      }}
                 >
-                    <ul>
-                        <li></li>
-                        <li></li>
+                    <ul
+                        style={{
+                            width: '100px',
+                            textAlign: 'center'
+                        }}
+                    >
+                        <li>
+                            所有数据
+                            <ul>
+                                <li>
+                                    我的数据
+                                </li>
+                                <li>
+                                    推荐数据
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                     <div
                         className='search'
