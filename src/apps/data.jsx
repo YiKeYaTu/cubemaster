@@ -26,6 +26,7 @@ export default connect(function (state) {
     return {
         move: state.move,
         INIT_LEFT: state.INIT_LEFT,
-        loginInf: state.loginInf
+        loginInf: state.loginInf,
+        dataset: state.dataset
     }
 })(App)

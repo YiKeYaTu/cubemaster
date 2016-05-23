@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 import dataReducers from '../reducers/data_reducers'
 import Data from '../apps/data.jsx'
 import { getLoginInf } from '../actions/header_action'
+import { fetchDataset } from '../actions/data_action'
 
 
 let store = createStore(
@@ -27,6 +28,8 @@ store.dispatch(getLoginInf()).then(() => {
     }
 
 })
+
+store.dispatch(fetchDataset())
 
 render(
     <Provider store={store}>

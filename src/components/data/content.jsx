@@ -1,7 +1,21 @@
 import React, { Component } from 'react'
 import DataElement from './data_element.jsx';
 
-export default class Content extends Component {
+let Content = React.createClass({
+
+    render () {
+
+        return (
+            <ContentComponent
+                {...this.props}
+            />
+        )
+
+    }
+
+})
+
+class ContentComponent extends Component {
     render () {
         return (
             <section
@@ -47,11 +61,16 @@ export default class Content extends Component {
                     style={{
                         width: '100%',
                         marginTop: '10px',
+                        overflow: 'hidden',
                     }}
                 >
-                    <DataElement />  
+                    <DataElement 
+                        {...this.props}
+                    />  
                 </section>
             </section>
         )
     }
 }
+
+export default Content
