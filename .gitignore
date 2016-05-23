@@ -3,3 +3,8 @@ node_modules/*
 .DS_Store
 
 index.html
+
+app/data.min.js
+app/index_min.js
+app/react.min.js
+app/combination.min.js
