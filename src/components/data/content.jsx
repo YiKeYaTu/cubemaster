@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import DataElement from './data_element.jsx';
+import DataElement from './data_element.jsx'
+import ChooseDataList from './choose_data_list.jsx'
 
 let Content = React.createClass({
 
@@ -28,47 +29,66 @@ class ContentComponent extends Component {
                      style={{
                         width: '100%',
                         overflow: 'hidden',
+                        borderBottom: '4px solid #333',
+                        marginBottom: '40px',
+                        padding: '40px 0px'
                      }}
                 >
-                    <ul
+                    <ChooseDataList />
+                    <div
                         style={{
-                            width: '100px',
-                            textAlign: 'center'
+                            float: 'left',
+                            width: '120px',
+                            height: '40px',
+                            marginLeft: '10px',
+                            lineHeight: '40px',
+                            background: 'rgb(84, 182, 231)',
+                            textAlign: 'center',
+                            borderRadius: '6px',
+                            color: '#f5f5f5',
+                            cursor: 'pointer'
                         }}
                     >
-                        <li>
-                            所有数据
-                            <ul>
-                                <li>
-                                    我的数据
-                                </li>
-                                <li>
-                                    推荐数据
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                        上传数据
+                    </div>
                     <div
                         className='search'
                         style={{
-                            marginTop: '30px',
-                            float: 'right'
+                            float: 'right',
                         }}
                     >
-                        <input 
-                            style={{
-                                outline: 'none',
-                                width: '180px',
-                                padding: '4px 10px',
-                                height: '20px',
-                                background: '#f5f5f5',
-                                borderRadius: '2px',
-                                border: '1px solid #ccc',
-                                fontSize: '14px',
-                                lineHeight: '18px'
-                            }}
-                            type='text'
-                        />
+                        <form>
+                            <input 
+                                style={{
+                                    outline: 'none',
+                                    width: '152px',
+                                    padding: '4px 10px',
+                                    height: '30px',
+                                    background: '#f5f5f5',
+                                    borderRadius: '2px',
+                                    border: '1px solid #ccc',
+                                    fontSize: '14px',
+                                    float: 'left',
+                                    lineHeight: '18px'
+                                }}
+                                type='text'
+                            />
+                            <input
+                                style={{
+                                    width: '40px',
+                                    height: '40px',
+                                    float: 'left',
+                                    display: 'block',
+                                    background: '#f5f5f5',
+                                    border: '1px solid #ccc',
+                                    borderLeft: 'none',
+                                    background: `url(${require('../../images/search.png')}) no-repeat center center`,
+                                    backgroundSize: '26px 26px'
+                                }}
+                                value=''
+                                type='submit'
+                            />
+                        </form>
                     </div>
                 </section>
                 <section
