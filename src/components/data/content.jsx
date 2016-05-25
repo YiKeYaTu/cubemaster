@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import DataElement from './data_element.jsx'
 import ChooseDataList from './choose_data_list.jsx'
+import Page from '../../refs/page.jsx'
 
 let Content = React.createClass({
 
@@ -26,22 +27,26 @@ class ContentComponent extends Component {
                 }}
             >
                 <section
+                    className='user-input-section'
                      style={{
                         width: '100%',
-                        overflow: 'hidden',
                         borderBottom: '4px solid #333',
                         marginBottom: '40px',
                         padding: '40px 0px'
                      }}
                 >
-                    <ChooseDataList />
+                    <ChooseDataList 
+                        {...this.props}
+                    />
                     <div
+                        className='upload-data'
                         style={{
                             float: 'left',
                             width: '120px',
                             height: '40px',
                             marginLeft: '10px',
                             lineHeight: '40px',
+                            transition: 'all .4s',
                             background: 'rgb(84, 182, 231)',
                             textAlign: 'center',
                             borderRadius: '6px',
@@ -102,6 +107,9 @@ class ContentComponent extends Component {
                         {...this.props}
                     />  
                 </section>
+                <Page
+
+                />
             </section>
         )
     }

@@ -27,7 +27,10 @@ class DataElementComponent extends Component {
         return (
             <section
                 style={{
-                    overflow: 'hidden'
+                    overflow: 'hidden',
+                    maxHeight: '960px',
+                    paddingBottom: '40px',
+                    borderBottom: '4px solid #333'
                 }}
             >
                 <div

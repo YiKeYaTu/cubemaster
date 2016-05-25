@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { move, loginInf } from './header_reducers'
-import { CHANGE_DATASET, GETTING_DATASET, FINISH_GET_DATASET } from '../actions/data_action'
+import { CHANGE_DATASET, GETTING_DATASET, FINISH_GET_DATASET, CHANGE_DATASET_DOWNLIST } from '../actions/data_action'
 
 const INIT_LEFT = '455px'
 
@@ -25,11 +25,30 @@ function dataset (state = {data: [], finish: false}, action) {
     }
 }
 
+function datasetChooseDownList (state = {
+    top: '0px',
+    opacity: '0',
+}, action) {
+    switch (action.type) {
+        case CHANGE_DATASET_DOWNLIST:
+            return action.flag ? {
+                top: '46px',
+                opacity: '1'
+            } : {
+                top: '0px',
+                opacity: '0'
+            }
+        default:
+            return state
+    }
+}
+
 let dataReducers = combineReducers({
 
     move: move(INIT_LEFT),
     loginInf: loginInf,
     dataset: dataset,
+    datasetChooseDownList: datasetChooseDownList,
     INIT_LEFT: function () {
         return INIT_LEFT;
     }
