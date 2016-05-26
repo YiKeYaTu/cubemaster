@@ -29,16 +29,27 @@ class DataElementComponent extends Component {
                 style={{
                     overflow: 'hidden',
                     maxHeight: '960px',
+                    position: 'relative',
                     paddingBottom: '40px',
                     borderBottom: '4px solid #333'
                 }}
             >
                 <div
                     style={{
+                        width: '100%',
+                        height: '400px',
+                        overflow: 'hidden',
+                        background: 'rgba(0, 0, 0, 0.2)',
                         display: finish ? 'none' : 'block'
                     }}
                 >
-                    加载中...
+                    <div className="spinner">
+                        <div className="rect1"></div>
+                        <div className="rect2"></div>
+                        <div className="rect3"></div>
+                        <div className="rect4"></div>
+                        <div className="rect5"></div>
+                    </div>
                 </div>
                 <div
                     style={{
