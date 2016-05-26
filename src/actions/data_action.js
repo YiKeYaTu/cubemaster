@@ -28,6 +28,7 @@ export function fetchDataset (obj) {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
+            mode: 'cors',
             body: str.slice(0, -1)
         })
             .then((res) => res.json())

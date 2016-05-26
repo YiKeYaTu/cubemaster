@@ -38,7 +38,8 @@ export function fetchPosts () {
 
         // return fetch('./', {
         return fetch(urlConfig.getDataServer, {
-            credentials: 'include'
+            credentials: 'include',
+            mode: 'cors',
         })
             .then(response => response.json())
             .then((json) => {
@@ -66,6 +67,7 @@ export function fetchConnect (argument) {
         return fetch(urlConfig.runServer, {
             credentials: 'include',
             method: 'POST',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },

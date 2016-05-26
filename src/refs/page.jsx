@@ -130,7 +130,7 @@ class PageNormalButtonComponent extends Component {
                     lineHeight: '34px',
                     color: '#f5f5f5',
                     float: 'left',
-                    marginLeft: '10px',
+                    marginRight: '10px',
                     background: this.props.currentPage == val ? 'rgb(84, 182, 231)' : '#333',
                     borderRadius: '6px'
                 }}
@@ -164,7 +164,7 @@ class PrvButtonComponent extends Component {
                     color: '#f5f5f5',
                     float: 'left',
                     display: this.props.currentPage === 0 ? 'none' : 'block',
-                    marginLeft: '10px',
+                    marginRight: '10px',
                     background: `#333 url(${require('../images/triangle.png')}) center center no-repeat`,
                     backgroundSize: '20px 20px',
                     transform: 'rotate(270deg)',
@@ -200,7 +200,7 @@ class NexButtonComponent extends Component {
                     color: '#f5f5f5',
                     float: 'left',
                     display: this.props.currentPage === this.props.totalPage ? 'none' : 'block',
-                    marginLeft: '10px',
+                    marginRight: '10px',
                     background: `#333 url(${require('../images/triangle.png')}) center center no-repeat`,
                     backgroundSize: '20px 20px',
                     transform: 'rotate(90deg)',

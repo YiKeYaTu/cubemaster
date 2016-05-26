@@ -38,7 +38,8 @@ export function getLoginInf (out) {
     return function (dispatch) {
         
         return fetch(url, {
-            credentials: 'include'
+            credentials: 'include',
+            mode: 'cors',
         })
             .then((res) => {
                 if (out) {
