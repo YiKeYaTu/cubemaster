@@ -15,7 +15,8 @@ class PageComponent extends Component {
     render () {
 
         let pageArr = [],
-            currentPage = parseInt(this.props.currentPage)
+            currentPage = parseInt(this.props.currentPage),
+            totalPage = parseInt(this.props.totalPage)
 
         for (let i = currentPage - 3, len = currentPage + 3; i < len; i++) {
 
