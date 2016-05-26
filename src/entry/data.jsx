@@ -17,17 +17,17 @@ let store = createStore(
 )
 
 
-// store.dispatch(getLoginInf()).then(() => {
+store.dispatch(getLoginInf()).then(() => {
 
-//     let res = store.getState()
+    let res = store.getState()
 
-//     let redirect = res && res.loginInf && res.loginInf.redirect
+    let redirect = res && res.loginInf && res.loginInf.redirect
 
-//     if (redirect) {
-//         window.location = `/CubeMaster1.3/user/redirectLogin?redirect=${redirect}`
-//     }
+    if (redirect) {
+        window.location = `/CubeMaster1.3/user/redirectLogin?redirect=${redirect}`
+    }
 
-// })
+})
 
 store.dispatch(fetchDataset({
     operate: 'total_data',
