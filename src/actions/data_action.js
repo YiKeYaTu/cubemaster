@@ -26,7 +26,7 @@ export function fetchDataset (obj) {
             credentials: 'include',
             method: 'POST',
             headers: {
-                'Content-type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: str.slice(0, -1)
         })
