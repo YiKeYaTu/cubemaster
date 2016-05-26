@@ -9,13 +9,26 @@ export const CHANGE_DATASET_DOWNLIST = 'CHANGE_DATASET_DOWNLIST'
 export const CHANGE_DATASET_FOCUS = 'CHANGE_DATASET_FOCUS'
 
 export function fetchDataset (obj) {
+    let str = ''
+
+    obj = obj || {}
+
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            str += key + '=' + obj[key] + '&'
+        }
+    }
 
     return function (dispatch) {
 
         dispatch(_gettingDataset())
         return fetch(urlConfig.datasetServer, {
             credentials: 'include',
-            method: 'POST'
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/x-www-form-urlencoded',
+            },
+            body: str.slice(0, -1)
         })
             .then((res) => res.json())
             .then((json) => {

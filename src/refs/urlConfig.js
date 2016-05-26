@@ -1,10 +1,10 @@
 
 let customConf = {
-    getDataServer: '/cubemaster/servlet/ExecutePageServlet',
-    loginServer: '/cubemaster/servlet/LoginCheckServlet',
-    loginOutServer: '/cubemaster/servlet/LogoutServlet',
-    runServer: '/cubemaster/servlet/RunServlet',
-    datasetServer: '/cubemaster/servlet/DataSetListServlet',
+    getDataServer: '../../servlet/ExecutePageServlet',
+    loginServer: '../../servlet/LoginCheckServlet',
+    loginOutServer: '../../servlet/LogoutServlet',
+    runServer: '../../servlet/RunServlet',
+    datasetServer: '../../servlet/DataSetListServlet',
 }
 
 export default customConf
