@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
+import { fetchDataset } from '../actions/data_action'
 
 let Page = React.createClass({
     render () {
         return (
             <PageComponent 
-                currentPage='20'
-                totalPage='20'
+                dispatch={this.props.dispatch}
+                currentPage={this.props.dataset.data.current_page}
+                totalPage={this.props.dataset.data.total_page}
             />
         )
     }
@@ -68,17 +70,17 @@ class PageComponent extends Component {
 
         }
 
-        console.log(pageArr)
-
         return (
             <section
                 style={{
                     width: '100%',
                     overflow: 'hidden',
-                    marginTop: '40px'
+                    marginTop: '40px',
+                    paddingBottom: '40px'
                 }}
             >
                  <PrvButton 
+                    dispatch={this.props.dispatch}
                     currentPage={currentPage}
                     totalPage={totalPage}
                  />
@@ -86,6 +88,7 @@ class PageComponent extends Component {
                     pageArr.map((item, index) => {
                         return (
                             <PageNormalButton 
+                                dispatch={this.props.dispatch}
                                 currentPage={currentPage}
                                 val={item}
                                 key={index}
@@ -94,6 +97,7 @@ class PageComponent extends Component {
                     })
                 }
                 <NexButton
+                    dispatch={this.props.dispatch}
                     currentPage={currentPage}
                     totalPage={totalPage}
                 />
@@ -122,6 +126,15 @@ class PageNormalButtonComponent extends Component {
 
         return (
             <div
+                onClick={() => {
+                    document.body.scrollTop = 0
+                    this.props.dispatch(fetchDataset({
+                        operate: 'total_data',
+                        current_page: this.props.val,
+                        per_page_number: '21',
+                        showLoading: false,
+                    }))
+                }}
                 className='page-button'
                 style={{
                     width: '34px',
@@ -155,6 +168,15 @@ class PrvButtonComponent extends Component {
     render () {
         return (
             <div
+                onClick={() => {
+                    document.body.scrollTop = 0
+                    this.props.dispatch(fetchDataset({
+                        operate: 'total_data',
+                        current_page: this.props.currentPage - 1,
+                        per_page_number: '21',
+                        showLoading: false,
+                    }))
+                }}
                 className='page-button'
                 style={{
                     width: '34px',
@@ -191,6 +213,15 @@ class NexButtonComponent extends Component {
     render () {
         return (
             <div
+                onClick={() => {
+                    document.body.scrollTop = 0
+                    this.props.dispatch(fetchDataset({
+                        operate: 'total_data',
+                        current_page: this.props.currentPage + 1,
+                        per_page_number: '21',
+                        showLoading: false,
+                    }))
+                }}
                 className='page-button'
                 style={{
                     width: '34px',

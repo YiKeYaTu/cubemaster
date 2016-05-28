@@ -21,15 +21,13 @@ export function fetchDataset (obj) {
 
     return function (dispatch) {
 
-        dispatch(_gettingDataset())
-        return fetch(urlConfig.datasetServer, {
-            credentials: 'include',
-            method: 'POST',
+        obj.showLoading && dispatch(_gettingDataset())
+        return fetch(urlConfig.datasetServer + '?' + str.slice(0, -1), {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             mode: 'cors',
-            body: str.slice(0, -1)
         })
             .then((res) => res.json())
             .then((json) => {

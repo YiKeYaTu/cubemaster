@@ -39,7 +39,7 @@ export function fetchPosts () {
         // return fetch('./', {
         return fetch(urlConfig.getDataServer, {
             credentials: 'include',
-            mode: 'cors',
+            mode: 'no-cors',
         })
             .then(response => response.json())
             .then((json) => {

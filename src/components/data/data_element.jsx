@@ -12,7 +12,6 @@ let DataElement = React.createClass({
 
 class DataElementComponent extends Component {
     render () {
-
         let dataset = this.props.dataset.data.dataset,
             finish = this.props.dataset.finish
 
@@ -88,7 +87,7 @@ class DataElementComponent extends Component {
                                     float: 'left'
                                 }}
                             >
-                                {item.dataset.dataset_name}
+                                {item.dataSet.dataset_name}
                             </div>
                             <div
                                 style={{
@@ -105,7 +104,7 @@ class DataElementComponent extends Component {
                                     marginBottom: '10px'
                                 }}
                             >
-                                简介: {item.dataset.description}
+                                简介: {item.dataSet.description}
                             </div>
                             <div
                                 style={{

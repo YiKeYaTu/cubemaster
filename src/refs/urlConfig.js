@@ -1,10 +1,10 @@
 
 let customConf = {
-    getDataServer: 'http://172.22.147.2/cubemaster/servlet/ExecutePageServlet',
-    loginServer: 'http://172.22.147.2/cubemaster/servlet/LoginCheckServlet',
-    loginOutServer: 'http://172.22.147.2/cubemaster/servlet/LogoutServlet',
-    runServer: 'http://172.22.147.2/cubemaster/servlet/RunServlet',
-    datasetServer: 'http://172.22.147.2/cubemaster/servlet/DataSetListServlet'
+    getDataServer: 'http://rcis.cqupt.edu.cn/TestCubeMaster/servlet/ExecutePageServlet',
+    loginServer: 'http://rcis.cqupt.edu.cn/TestCubeMaster/servlet/LoginCheckServlet',
+    loginOutServer: 'http://rcis.cqupt.edu.cn/TestCubeMaster/servlet/LogoutServlet',
+    runServer: 'http://rcis.cqupt.edu.cn/TestCubeMaster/servlet/RunServlet',
+    datasetServer: 'http://rcis.cqupt.edu.cn/TestCubeMaster/servlet/DataSetListServlet'
 }
 
 export default customConf

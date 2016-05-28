@@ -108,7 +108,7 @@ class ContentComponent extends Component {
                     />  
                 </section>
                 <Page
-
+                    {...this.props}
                 />
             </section>
         )
