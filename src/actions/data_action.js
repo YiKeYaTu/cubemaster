@@ -22,6 +22,7 @@ export function fetchDataset (obj) {
     return function (dispatch) {
 
         obj.showLoading && dispatch(_gettingDataset())
+        dispatch(changeDatasetFocuse(obj.operate))
         return fetch(urlConfig.datasetServer + '?' + str.slice(0, -1), {
             method: 'GET',
             headers: {
@@ -33,7 +34,15 @@ export function fetchDataset (obj) {
             .then((json) => {
                 dispatch(_changeDataset(json))
                 dispatch(_finishGetDataset())
+                document.body.scrollTop = 0
             })
+    }
+}
+
+export function changeDatasetFocuse (data) {
+    return {
+        type: CHANGE_DATASET_FOCUS,
+        data
     }
 }
 

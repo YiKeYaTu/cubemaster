@@ -84,7 +84,10 @@ class DataElementComponent extends Component {
                                     marginRight: '10px',
                                     borderRadius: '100%',
                                     background: 'rgb(84, 182, 231)',
-                                    float: 'left'
+                                    float: 'left',
+                                    textOverflow: 'ellipsis',
+                                    whiteSpace: 'nowrap',
+                                    overflow: 'hidden',
                                 }}
                             >
                                 {item.dataSet.dataset_name}

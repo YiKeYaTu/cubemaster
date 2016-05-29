@@ -48,6 +48,7 @@ class AppComponent extends Component {
 export default connect(function (state) {
     return {
         move: state.move,
+        datasetFocuse: state.datasetFocuse,
         INIT_LEFT: state.INIT_LEFT,
         loginInf: state.loginInf,
         dataset: state.dataset,

@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux'
 import { move, loginInf } from './header_reducers'
-import { CHANGE_DATASET, GETTING_DATASET, FINISH_GET_DATASET, CHANGE_DATASET_DOWNLIST } from '../actions/data_action'
+import { 
+    CHANGE_DATASET, GETTING_DATASET, FINISH_GET_DATASET, 
+    CHANGE_DATASET_DOWNLIST, CHANGE_DATASET_FOCUS
+} from '../actions/data_action'
 
 const INIT_LEFT = '455px'
 
@@ -21,6 +24,19 @@ function dataset (state = {data: [], finish: false}, action) {
                 finish: true
             })
         default: 
+            return state
+    }
+}
+
+function datasetFocuse (state = '所有数据', action) {
+    switch (action.type) {
+        case CHANGE_DATASET_FOCUS:
+            if (action.data == 'total_data') {
+                return '所有数据'
+            } else if (action.data == 'mine_data') {
+                return '我的数据'
+            }
+        default:
             return state
     }
 }
@@ -48,6 +64,7 @@ let dataReducers = combineReducers({
     move: move(INIT_LEFT),
     loginInf: loginInf,
     dataset: dataset,
+    datasetFocuse: datasetFocuse,
     datasetChooseDownList: datasetChooseDownList,
     INIT_LEFT: function () {
         return INIT_LEFT;

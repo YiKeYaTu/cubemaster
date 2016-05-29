@@ -127,7 +127,6 @@ class PageNormalButtonComponent extends Component {
         return (
             <div
                 onClick={() => {
-                    document.body.scrollTop = 0
                     this.props.dispatch(fetchDataset({
                         operate: 'total_data',
                         current_page: this.props.val,
@@ -169,7 +168,6 @@ class PrvButtonComponent extends Component {
         return (
             <div
                 onClick={() => {
-                    document.body.scrollTop = 0
                     this.props.dispatch(fetchDataset({
                         operate: 'total_data',
                         current_page: this.props.currentPage - 1,
@@ -214,7 +212,6 @@ class NexButtonComponent extends Component {
         return (
             <div
                 onClick={() => {
-                    document.body.scrollTop = 0
                     this.props.dispatch(fetchDataset({
                         operate: 'total_data',
                         current_page: this.props.currentPage + 1,
