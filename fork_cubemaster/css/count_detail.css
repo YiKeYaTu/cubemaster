@@ -1,0 +1,426 @@
+.brief span,.property span,.para-list span,.output-style span,.input-style span,.test-data span{
+    line-height: 30px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+}
+.pro-type,.pro-keyword,.pro-platform{
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+}
+.output-style span,.input-style span,.test-data span{
+    padding: 0 20px;
+    text-align: center;
+    line-height: 30px;
+    vertical-align: top;
+    border-radius: 5px 0 0 5px;
+}
+.output-style-content,.input-style-content,.test-data-content{
+    margin-left: 20px;
+    text-align: justify;
+}
+.content{
+    min-width: 1160px;
+    position: relative;
+    background-color: rgb(84,182,231);
+}
+.my-container{
+    position: relative;
+    z-index:10;
+    width: 1160px;
+    margin: 0 auto;
+}
+.link-title li{
+    float: left;
+    font-size: 30px;
+}
+.bef-count-name:after{
+    padding: 0 5px;
+    color: #ccc;
+    content: "/\00a0";
+}
+.link-title a{
+    color: #333;
+}
+.link-title{
+    color: rgb(82, 159, 207);
+}
+.link-title .count-name{
+    color: #ffffff; !important;
+}
+.link-title a:hover{
+    color: #ffffff;
+}
+.tool{
+    overflow: hidden;
+}
+.tool-bottom{
+    clear: both;
+    border-width: 1px 0;
+    border-color: #333;
+    border-style: solid;
+    width: 265px;
+}
+.search-input{
+    width: 200px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: transparent;
+    line-height: 30px;
+    color: #fff;
+    padding-left: 5px;
+    font-size: 14px;
+    border-width: 0 0 2px 0;
+    border-style: solid;
+    border-color: #333;
+    outline: none;
+}
+.search-btn{
+    box-sizing: border-box;
+    width: 49px;
+    height: 33px;
+    margin-left: 5px;
+    line-height: 34px;
+    display: inline-block;
+    font-size: 14px;
+    vertical-align: top;
+    text-align: center;
+    border-radius: 0 4px 4px 0;
+    color: #333;
+     background: url("../images/sousuo.png") 15px 7px no-repeat #313131;
+}
+.search-btn:hover{
+    cursor: pointer;
+    background-color: #9a9a9a;
+}
+.main-content{
+    margin-top: 20px;
+    border-radius: 50px;
+}
+.main-content-header{
+    color: #fff;
+    height: 50px;
+    background-color: rgb(62, 125, 165);
+    border-radius: 50px 50px 0 0;
+}
+.main-content-header p{
+    float: right;
+    height: 50px;
+    line-height: 50px;
+    margin-right: 100px;
+}
+.main-content-header::after{
+    clear: both;
+}
+.main-detail{
+    color: #99999A;;
+    background-color: #fff;
+    overflow: hidden;
+}
+.detail-footer{
+    position: relative;
+}
+.main-content-footer{
+    height: 50px;
+    background-color: rgb(82, 159, 207);
+    border-radius: 0 0 50px 50px;
+}
+.brief h2,.property h2,.para-list h2,.output-style h2,.input-style h2,.test-data h2{
+    vertical-align: top;
+    padding: 0 20px;
+    color: #676464;
+    font-weight: bold;
+    border-bottom:1px solid #333; 
+    width: 1075px;
+    margin: 30px 0 10px 0;
+}
+.brief{
+    margin:20px 0 0 20px;
+}
+.brief-content{
+   text-indent: 2em;
+   width: 1120px;
+    text-align: justify;
+    display: inline-block;
+}
+.property{
+    margin-left: 20px;
+}
+.property span{
+    padding: 0 230px 0 20px;
+    height: 30px;
+    vertical-align: top;
+    border-radius: 7px 0 0 7px;
+}
+.para-list{
+    margin-left: 20px;
+}
+.para-list h2{
+    margin-top: 10px;
+}
+
+.para-list span{
+    padding:  0 20px;
+    border-radius: 5px 0 0 5px;
+    vertical-align: top;
+}
+.para-list>div{
+    display: inline-block;
+    width: 1115px;
+    height: 63px;
+}
+.para-list-head{
+    height: 31px;
+    overflow: hidden;
+}
+.para-list-content{
+    overflow: hidden;
+
+}
+.pro-type{
+    margin-left: 20px;
+}
+.para-list-mid::before{
+    left: 445px;
+    top:13px;
+}
+.para-list-mid::after{
+    right: 319px;
+    top: 13px;
+}
+.para-list-head li,.para-list-content li{
+    float: left;
+    line-height: 32px;
+    width: 33.2%;
+    text-align: center;
+}
+.output-style,.input-style,.test-data{
+    width: 1115px;
+    margin-left: 20px;
+}
+.test-data-content{
+    width: 950px;
+}
+.sound-code{
+    position: absolute;
+    top:320px;
+    right: 5px;
+    width: 241px;
+    height: 98px;
+    border-radius: 118px / 50px;
+    border: 1px solid #585858;
+    box-shadow: 0 1px 1px 0 rgba(76, 76, 76, 0.5);
+    line-height: 98px;
+    text-align: center;
+    font-size: 27px;
+    color: #cccccc;
+}
+.sound-code:hover{
+    cursor: pointer;
+    background-color: rgb(82, 159, 207);
+    color: #333333;
+    transition: all 0.4s;
+}
+.code-btn{
+    cursor: pointer;
+    width: 300px;
+    margin:20px;
+    height: 50px;
+    background: url("../images/up.png") no-repeat 260px 10px #E8E6E4;
+}
+.code-btn-content{
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+    color: rgb(175, 173, 173);
+    margin-left: 50px;
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 50px;
+    width: 200px;
+    display: inline-block;
+}
+.code-btn-content:hover{
+    color: rgb(82, 81, 81);
+}
+.code-btn:hover{
+    background-color: rgb(171, 171, 171);
+    box-shadow: 0 1px 20px rgba(0,0,0,0.25);
+    transition: all 0.4s;
+}
+.source-nav{
+    width: 300px;
+    position: absolute;
+    top: 90px;
+    left: 20px;
+    cursor: pointer;
+    display: none;
+    background-color: rgb(245, 245, 245);
+    overflow-right: hidden;
+}
+.source-nav ul{
+    margin-left: 10px;
+    width: 300px;
+}
+.source-nav li{
+    width: 100%;
+    word-break: break-all; 
+    line-height: 30px;
+    height: 30px;
+    border-bottom: 2px solid #ddd;
+}
+.source-nav li a{
+    /*margin-left: 10px;*/
+    padding-left: 10px;
+}
+.source-nav li:hover{
+    background-color: rgb(171, 171, 171);
+    color: #333;
+    transition: all 0.4s;
+    font-size: 20px;
+}
+.source-nav-active{
+    background-color: rgb(171, 171, 171) ; !important;
+    color: #333;
+    transition: all 0.4s;
+    font-size: 20px;
+}
+.source-nav-link{
+    background-color: rgb(245, 245, 245);
+    color: #99999A;
+    font-size: 16px;
+    transition: all 0.4s;
+}
+.souce-nav li a{
+    margin-left: 5px;
+}
+.source-nav a:hover{
+    color: #333;
+}
+.source{
+    background-color: #9C9C9C;
+    display: none;
+    width: 814px;
+    height: 425px;
+    position: absolute;
+    left: 320px;
+    clear: both;
+    top: 90px;
+    z-index: 100;
+}
+.source-left,.source-right{
+    position: absolute;
+    font-size: 40px;
+    text-align: center;
+    line-height: 50px;
+    top: 45%;
+    width: 50px;
+    height: 50px;
+    font-weight: bold;
+    background-color: #b1b1b1;
+    cursor: pointer;
+}
+.source-right{
+    right: 0;
+}
+.source-right:hover,.source-left:hover{
+    background-color: #313131;
+    transition: all 0.4;
+}
+.source-content{
+    width: 100%;
+    height: 100%;
+
+}
+.source-content-page{
+    width: 100%;
+    height: 100%;
+}
+.source-content-page p{
+    width: 49%;
+    height: 50%;
+    display: inline-block;
+}
+.source-content-page a{
+    width: 200px;
+    height: 50px;
+    display: inline-block;
+    margin-top: 74px;
+    line-height: 50px;
+    border-radius: 50px;
+    background-color: #676464;
+    cursor: pointer;
+}
+.source-content-page a:hover{
+    background-color: #ffffff;
+    transition: all 0.8s;
+}
+.source-content-page div{
+    display: inline-block;
+    width: 49.7%;
+    height: 50%;
+    text-align: center;
+    /*line-height: 212.5px;*/
+}
+.nav-1{
+    margin-left: 10px; !important;
+}
+.nav-2{
+    margin-left: 20px; !important;
+}
+.nav-3{
+    margin-left: 30px; !important;
+}
+ /* 定义模态对话框外面的覆盖层样式 */
+        #modal-overlay {
+             display:none;
+             position: absolute;   /* 使用绝对定位或固定定位  */
+             width:100%;
+             height:1455px;
+             z-index: 1000;
+             background-color: rgba(0, 0, 0, 0.2); 
+             /*opacity: 0.5;   /* 背景半透明 */
+        }
+        /* 模态框样式 */
+        .modal-data{    
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin:auto auto;
+            width:70%;
+             height: 60%;
+             background-color: #fff;
+             box-shadow: 0 0 5px #333;
+             border-radius: 50px;
+
+        }
+        .modal-head{
+            height: 50px;
+            background-color: rgb(84,182,231);
+            border-radius: 50px 50px 0 0;
+            text-align: center;
+            line-height: 50px;
+            font-weight: solid;
+            font-size: 20px;
+            overflow: hidden;
+        }
+        .modal-close{
+            display: inline-block;
+            height: 50px;
+            width: 50px;
+            background-color: rgb(84,182,231);
+            border-top-right-radius: 50px;
+            position: absolute;
+            right: -6px;
+            float: right;
+            cursor: pointer;
+            margin-right: 5px;
+            color: #fff;
+            font-size: 25px;
+        }
+        .modal-close:hover{
+               background-color: rgb(69, 156, 199);
+               transition: all 0.4;
+               color: #333;
+        }
