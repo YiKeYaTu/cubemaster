@@ -423,3 +423,20 @@
                transition: all 0.4;
                color: #333;
         }
+        .modal-body{
+            height: 100%;
+            overflow: auto;
+        }
+        .modal-body-left{
+            /*height: 100%;*/
+            width: 40px;
+            background-color: rgba(0, 0, 0, 0.08);
+            border-right: 1px solid #fff;
+        }
+        .modal-body-left p{
+            font-size: 20px;
+            text-align: center;
+            color: #888686;
+            height: 30px;
+            line-height: 30px;
+        }
