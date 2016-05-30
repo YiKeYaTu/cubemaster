@@ -12,6 +12,7 @@ window.onload=function() {
 	var codeBtn = document.querySelectorAll(".source-content-page a");
 	//判断模态框是否正在变化
 	var animate = false;
+
 	//监听模态框关闭事件
 	document.querySelector(".modal-close").addEventListener("click", function () {
 		if(!animate){
@@ -20,6 +21,8 @@ window.onload=function() {
 			closeModal(opa);
 		}
 	});
+
+	//监听模态框打开事件
 	for (var i = 0; i < codeBtn.length; i++) {
 		codeBtn[i].addEventListener("click", function () {
 			if(!animate) {
@@ -87,7 +90,13 @@ window.onload=function() {
 		for (var i = 0; i < navList.length; i++) {
 			navList[i].addEventListener("click", function () {
 				if(this.getAttribute("type")=="1"){
-					
+					if(!animate) {
+						animate = true;
+						modalStatus.style.display = (modalStatus.style.display == "block") ? "none" : "block";
+						var opa = 0;
+						showModal(opa);
+						animate = false;
+					}
 				}
 				
 				//未展开
