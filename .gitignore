@@ -4,7 +4,7 @@ node_modules/*
 
 index.html
 
-app/data.min.js
-app/index_min.js
-app/react.min.js
-app/combination.min.js
+app1/data.min.js
+app1/index_min.js
+app1/react.min.js
+app1/combination.min.js
