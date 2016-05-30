@@ -77,31 +77,7 @@ function getDataFromSever() {
         var tmp=url.replace(getQueryStringByName('dataset_viewmore'),'true');
         var file_path=tmp;
         datamore();
-        //var file='http://172.22.146.5/FileSystem/servlet/DataSetDetailsServlet?protocol=A-1-3-request&dataset_id=2&data_page=3&dataset_viewmore=true'
-        //var req = CreatXHR();
-        //if (req != null) {
-        //    req.onreadystatechange = function () {
-        //        if (req.readyState === 4) {
-        //            if ((req.status >= 200) && req.status < 300) {
-        //                file_data = JSON.parse(req.responseText);
-        //    var text = document.getElementById('viewmore');
-        //                if(file_data.data_hasmore) {
-        //                    for (var i = 0; i < file_data.data_source.length; i++) {
-        //                        var list = document.createElement('li');
-        //                        text.appendChild(list);
-        //                        list.setAttribute('class', 'info');
-        //                        document.getElementsByClassName('info')[i].innerHTML = file_data.data_source[i];
-        //                    }
-        //                    console.log(list );
-        //                }else{
-        //                    alert('没有更多数据！！');
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-        //req.open('GET',file,false);
-        //req.send();
+
     }
     //点击隐藏
     function hide(){
