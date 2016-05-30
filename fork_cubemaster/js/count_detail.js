@@ -38,6 +38,10 @@ window.onload=function() {
 			var source = document.querySelector(".source");
 			var mainDetail = document.querySelector(".main-detail");
 			var codeContent = document.querySelector(".code-btn-content");
+            //
+			// //点击的是否是类
+			// if(this.getAttr)
+
 			sourceList.style.display = (sourceList.style.display == "inline-block") ? "none" : "inline-block";
 			if (sourceList.style.display == "inline-block") {
 				mainDetail.style.minHeight = "1300px";
@@ -76,11 +80,16 @@ window.onload=function() {
 				}
 			}
 		});
+
 		var currentActive;
 		var navList = document.querySelectorAll(".source-nav li");
 		//监听下拉框数据
 		for (var i = 0; i < navList.length; i++) {
 			navList[i].addEventListener("click", function () {
+				if(this.getAttribute("type")=="1"){
+					
+				}
+				
 				//未展开
 				if (this.attributes["status"].value == "0") {
 					//显示子菜单
@@ -221,6 +230,7 @@ window.onload=function() {
 				var time = setTimeout(function () {
 					if (modalStatus.style.opacity >= 1) {
 						clearTimeout(time)
+						document.querySelector("body").style.overflow = 'hidden';
 						return;
 					}
 					showModal(opa);
@@ -233,6 +243,7 @@ window.onload=function() {
 					clearTimeout(time);
 					modalStatus.style.display = (modalStatus.style.display == "block") ? "none" : "block";
 					animate = false;
+					document.querySelector("body").style.overflow = 'auto';
 					return;
 				}
 				opa -= 2;
