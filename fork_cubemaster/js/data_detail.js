@@ -118,7 +118,6 @@ var result=data_page();
 
                                 console.log(list);
                             } else {
-
                                 document.getElementById('data_more').style.display='none';
                                 alert('没有更多数据！！');
                             }
