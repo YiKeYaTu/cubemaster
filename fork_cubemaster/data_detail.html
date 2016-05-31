@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <link rel="stylesheet" type="text/css" href="./css/data.css">
+    <link rel="stylesheet" type="text/css" href="./css/data_detail.css">
+</head>
+<body>
+<section id='container'></section>
+<script src='./react.min.js'></script>
+<script src='./data.min.js'></script>
+
+<div class="content">
+    <div class="container">
+            <ul class="link-title">
+                <li class="bef-data-name"><a href="data_index.html">数据展示</a></li>
+                <li class="data-name" id="data-name"></li>
+            </ul>
+            <div class="search" style="float: right">
+                <input type="text" class="search-input" placeholder="请输入你想要搜索的内容">
+                <a   class="search-btn">搜索</a>
+            </div>
+            <div class="tool-bottom"></div>
+            <div class="main-content">
+                <div class="main-content-header">
+                    <div class="header-info">
+                        <label class="author">作者：<span id="author">undefined</span></label>
+                        <label class="update-time">最近更新时间: <span id="update-time">2016-5-19 13:16</span></label>
+                    </div>
+                </div>
+                <div class="main-content-info">
+                    <div class="info-container">
+                        <div class="info-container-name">
+                            <div class="bref">
+                                <span class="label">简介：</span>
+                                <span  id="bref">xxx</span>
+                            </div>
+                            <div class="count">
+                                <span class="label">下载次数：</span>
+                                <span id="count">123</span>
+                            </div>
+                            <div class="source">
+                                <span class="label">来源领域：<span id="area"></span> </span>
+                            </div>
+                        </div>
+                        <div class="data-type">
+                            <span class="label">数据类型：</span>
+                            <span id="data-type">xxx</span>
+                        </div>
+                        <div class="fileds-list">
+                            <span class="label">字段列表：</span>
+                            <table class="table">
+                            <tr>
+                                <td>名称</td>
+                                <td>类型</td>
+                                <td>范围</td>
+                            </tr>
+                            <tr class="attributes" id="attributes">
+                                <td class="name"></td>
+                                <td class="type"></td>
+                                <td class="range"></td>
+                            </tr>
+                            </table>
+                        </div>
+                        <div class="data-text">
+                            <span class="label">数据文本：</span>
+                            <button type="button" value="点击展开" class="unfold" onclick="viewmore()">点击展开</button>
+
+                                <div  class="viewmore" id="viewmore">
+                                    <div id="listmore">
+                                    <ul class="viewmore"></ul>
+                                    </div>
+
+                            </div>
+                            <div>
+                            <button type="button" value="显示更多" id="data_more" onclick="datamore()">显示更多</button>
+                            <button type="button" value="点击隐藏" id="fold" onclick="hide()">点击隐藏</button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./js/data_detail.js"></script>
+</body>
+</html>
