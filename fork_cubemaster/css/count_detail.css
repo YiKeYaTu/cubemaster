@@ -168,16 +168,14 @@
 .para-list>div{
     display: inline-block;
     width: 1115px;
-    height: 63px;
 }
 .para-list-head{
     height: 31px;
     overflow: hidden;
 }
-.para-list-content{
+.para-list-content ul{
     overflow: hidden;
-
-}
+} 
 .pro-type{
     margin-left: 20px;
 }
