@@ -246,7 +246,7 @@
     transition: all 0.4s;
 }
 .source-nav{
-    width: 300px;
+    width: 1115px;
     position: absolute;
     top: 90px;
     left: 20px;
@@ -283,10 +283,14 @@
     font-size: 20px;
 }
 .source-nav-link{
-    background-color: rgb(245, 245, 245);
+    /*background-color: rgb(245, 245, 245);*/
     color: #99999A;
     font-size: 16px;
     transition: all 0.4s;
+    background: -webkit-linear-gradient(left, rgb(221, 221, 221),rgb(255,255,255)); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(left, rgb(221, 221, 221),rgb(255,255,255)); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(left, rgb(221, 221, 221),rgb(255,255,255)); /* Firefox 3.6 - 15 */
+    background: linear-gradient(left, rgb(221, 221, 221),rgb(255,255,255)); /* 标准的语法 */
 }
 .souce-nav li a{
     margin-left: 5px;

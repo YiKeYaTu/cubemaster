@@ -2,94 +2,6 @@
  * Created by liuyanhao on 20/5/16.
  */
 
-window.onload=function() {
-
-	//获取算法基本数据
-	function loadBasicData() {
-		var xmlhttp = new XMLHttpRequest();
-		var url = "http://172.22.146.5/FileSystem/servlet/AlgorithmDetailsServlet?protocol=A-2-3-request&algorithm_id=9";
-		// var url = "http://172.22.147.5:8080/FileSystem/servlet/AlgorithmMenuServlet?algorithm_id=8";
-		xmlhttp.onreadystatechange = function () {
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-				console.log(xmlhttp.responseText)
-				var content = JSON.parse(xmlhttp.responseText)
-				addBasicData(content);
-			}
-		}
-		xmlhttp.open("GET", url, true);
-		xmlhttp.send();
-	}
-	loadBasicData()
-
-	//将基本信息添加到节点上
-	function addBasicData(content) {
-		var brief = content.algorithm.description;
-		//算法名称
-		var name = content.algorithm.algorithm_name;
-		//算法类型
-		var tasks = content.algorithm.associated_tasks;
-		//作者
-		var author = content.user_name;
-		//测试数据集
-		var dataTest = content.algorithm.data_test;
-		//简介
-		var brief = content.algorithm.description;
-		//参数个数
-		var paraCount = content.algorithm.parameter_count;
-		//平台
-		var platform = content.algorithm.platform;
-		//最新提交时间
-		var submitTime = content.algorithm.submit_datetime;
-		//关键字
-		var keyword = content.key_word[0].keyword;
-		//数据需求
-		// var requirements = content.algorithm.associated_requirements;
-		//输入格式
-		var inPattern = content.algorithm.in_pattern;
-		//输出格式
-		var outPattern = content.algorithm.out_pattern;
-
-		document.querySelector(".count-name").innerHTML = name;
-		//判断匿名
-		if(author) {
-			document.querySelector(".author").innerHTML = author;
-		}
-		document.querySelector(".update-time").innerHTML = submitTime;
-		document.querySelector(".brief-content").innerHTML = brief
-		document.querySelector(".pro-type span").innerHTML = tasks;
-		document.querySelector(".pro-keyword span").innerHTML = keyword;
-		document.querySelector(".pro-platform span").innerHTML = platform;
-		document.querySelector(".output-style-content").innerHTML = outPattern;
-		document.querySelector(".input-style-content").innerHTML = inPattern;
-		document.querySelector(".test-data-content").innerHTML = dataTest;
-
-		//参数列表
-		var paraList = content.parameters;
-		paraList.forEach(function (item,index,array) {
-			var paraObj = document.createElement('ul');
-
-			//参数名称
-			var paraName = document.createElement("li");
-			var nodeName = document.createTextNode(item.parameter_name);
-			paraName.appendChild(nodeName);
-
-			//参数类型
-			var paraType = document.createElement("li");
-			var nodeType = document.createTextNode(item.parameter_type);
-			paraType.appendChild(nodeType);
-
-			//参数值
-			var paraVal = document.createElement("li");
-			var nodeVal = document.createTextNode(item.parameter_value);
-			paraVal.appendChild(nodeVal);
-
-			paraObj.appendChild(paraName);
-			paraObj.appendChild(paraType);
-			paraObj.appendChild(paraVal);
-			document.querySelector(".para-list-content").appendChild(paraObj);
-		})
-	}
-
 	//模态框状态
 	var modalStatus = document.querySelector("#modal-overlay");
 	//列表栏状态
@@ -119,128 +31,137 @@ window.onload=function() {
 				animate = false;
 			}
 		});
-}
+	}
+
+	//点击源码按钮展开事件
+	function sourceListAction(navList) {
+		var btn = document.querySelector(".code-btn");
+		var sourceList = document.querySelector(".source-nav");
+		// var source = document.querySelector(".source");
+		var mainDetail = document.querySelector(".main-detail");
+		var codeContent = document.querySelector(".code-btn-content");
+
+		sourceList.style.display = (sourceList.style.display == "inline-block") ? "none" : "inline-block";
+		if (sourceList.style.display == "inline-block") {
+			mainDetail.style.minHeight = "1070px";
+			btn.style.background = "url('images/down.png') no-repeat 260px 20px rgb(171, 171, 171)";
+			btn.style.height = "70px";
+			btn.style.lineHeight = "60px";
+			btn.style.fontSize = "40px";
+			btn.style.display = "inline-block";
+			codeContent.style.color = "rgb(82, 81, 81)";
+			//隐藏子菜单
+			for (var j = 0; j < navList.length; j++) {
+				if (navList[j].getAttribute("parentid") != "-1") {
+					navList[j].style.display = "none";
+				}
+			}
+			//将滚动条移到最下面
+			window.scrollTo(0,document.body.scrollHeight);
+		}
+		else {
+			mainDetail.style.minHeight = "650px";
+			btn.style.height = "50px";
+			btn.style.lineHeight = "50px";
+			btn.style.fontSize = "20px";
+			btn.style.display = "inline-block";
+			btn.style.background = "url('images/up.png') no-repeat 260px 10px #E8E6E4";
+			//隐藏子菜单
+			for (var j = 0; j < navList.length; j++) {
+				if (navList[j].value == currentActive) {
+					navList[j].className = "source-nav-link";
+				}
+				navList[j].setAttribute("status", "0");
+				if (navList[j].style.display == "none") {
+					navList[j].style.display = "list-item";
+				}
+			}
+		}
+	}
+
 		//监听源码按钮点击事件
 		document.querySelector(".code-btn").addEventListener("click", function () {
-			var btn = document.querySelector(".code-btn");
-			var sourceList = document.querySelector(".source-nav");
-			var source = document.querySelector(".source");
-			var mainDetail = document.querySelector(".main-detail");
-			var codeContent = document.querySelector(".code-btn-content");
-            //
-			// //点击的是否是类
-			// if(this.getAttr)
-
-			sourceList.style.display = (sourceList.style.display == "inline-block") ? "none" : "inline-block";
-			if (sourceList.style.display == "inline-block") {
-				mainDetail.style.minHeight = "1300px";
-				source.style.display = "inline-block";
-				sourceFrame();
-				btn.style.background = "url('images/down.png') no-repeat 260px 20px rgb(171, 171, 171)";
-				btn.style.height = "70px";
-				btn.style.lineHeight = "60px";
-				btn.style.fontSize = "40px";
-				btn.style.display = "inline-block";
-				codeContent.style.color = "rgb(82, 81, 81)";
-				//隐藏子菜单
-				for (var j = 0; j < navList.length; j++) {
-					if (navList[j].getAttribute("parentId") != "0" && navList[j].getAttribute("parentId") != null) {
-						navList[j].style.display = "none";
-					}
-				}
-			}
-			else {
-				mainDetail.style.minHeight = "735px";
-				source.style.display = "none";
-				btn.style.height = "50px";
-				btn.style.lineHeight = "50px";
-				btn.style.fontSize = "20px";
-				btn.style.display = "inline-block";
-				btn.style.background = "url('images/up.png') no-repeat 260px 10px #E8E6E4";
-				//隐藏子菜单
-				for (var j = 0; j < navList.length; j++) {
-					if (navList[j].value == currentActive) {
-						navList[j].className = "source-nav-link";
-					}
-					navList[j].setAttribute("status", "0");
-					if (navList[j].style.display == "none") {
-						navList[j].style.display = "list-item";
-					}
-				}
-			}
+			loadSourceList();
 		});
 
-		var currentActive;
-		var navList = document.querySelectorAll(".source-nav li");
-		//监听下拉框数据
-		for (var i = 0; i < navList.length; i++) {
-			navList[i].addEventListener("click", function () {
-				if(this.getAttribute("type")=="1"){
-					if(!animate) {
-						animate = true;
-						modalStatus.style.display = (modalStatus.style.display == "block") ? "none" : "block";
-						var opa = 0;
-						showModal(opa);
-						animate = false;
-					}
-				}
-				
-				//未展开
-				if (this.attributes["status"].value == "0") {
-					//显示子菜单
-					for (var j = 0; j < navList.length; j++) {
-						if (navList[j].getAttribute("parentId") == this.value) {
-							navList[j].style.display = "list-item";
-						}
-					}
-					this.setAttribute("status", "1");
-				}
-				//已经展开
-				else {
-					//隐藏子菜单
-					for (var j = 0; j < navList.length; j++) {
-						if (navList[j].getAttribute("parentId") == this.value) {
-							hideMoreNav(navList[j].value)
-							navList[j].style.display = "none";
-						}
-					}
-					this.setAttribute("status", "0");
-				}
-				//更改点击前后点击后的样式
-				for (var k = 0; k < navList.length; k++) {
-					if (navList[k].value == currentActive) {
-						navList[k].className = "source-nav-link";
-					}
-				}
-				this.className = "source-nav-active";
-				currentActive = this.value;
-			});
-		}
-//源代码框
-		function sourceFrame() {
-			var source = document.querySelector(".source");
-			var opa = 0;
+		//监听下拉框点击事件
+		function listenNavListEvent(navList) {
+			// alert(1)
+			var currentActive;
+			//监听下拉框数据
+			for (var i = 0; i < navList.length; i++) {
+				navList[i].addEventListener("click", function () {
 
-			function show() {
-				source.style.opacity = opa;
-				opa += 0.2;
-				if (source.style.opacity >= 1) {
-					clearTimeout(time);
-					return;
-				}
-				var time = setTimeout(function () {
-					show();
-				}, 200)
+					//判断是否是类名
+					var regExp = /.java$/;
+					if( regExp.test(this.childNodes[0].innerHTML)){
+
+						if(!animate) {
+							animate = true;
+							modalStatus.style.display = (modalStatus.style.display == "block") ? "none" : "block";
+							var opa = 0;
+							showModal(opa);
+							animate = false;
+						}
+					}
+
+					//未展开
+					if (this.attributes["status"].value == "0") {
+						//显示子菜单
+						for (var j = 0; j < navList.length; j++) {
+							if (navList[j].getAttribute("parentId") == this.value) {
+								navList[j].style.display = "list-item";
+							}
+						}
+						this.setAttribute("status", "1");
+					}
+					//已经展开
+					else {
+						//隐藏子菜单
+						for (var j = 0; j < navList.length; j++) {
+							if (navList[j].getAttribute("parentId") == this.value) {
+								hideMoreNav(navList[j].value)
+								navList[j].style.display = "none";
+							}
+						}
+						this.setAttribute("status", "0");
+					}
+					//更改点击前后点击后的样式
+					for (var k = 0; k < navList.length; k++) {
+						if (navList[k].value == currentActive) {
+							navList[k].className = "source-nav-link";
+						}
+					}
+					this.className = "source-nav-active";
+					currentActive = this.value;
+				});
 			}
-
-			show();
 		}
+		// //源代码框
+		// function sourceFrame() {
+		// 	var source = document.querySelector(".source");
+		// 	var opa = 0;
+        //
+		// 	function show() {
+		// 		source.style.opacity = opa;
+		// 		opa += 0.2;
+		// 		if (source.style.opacity >= 1) {
+		// 			clearTimeout(time);
+		// 			return;
+		// 		}
+		// 		var time = setTimeout(function () {
+		// 			show();
+		// 		}, 200)
+		// 	}
+        //
+		// 	show();
+		// }
 
 //详细收缩
-		function detailMove() {
-			var mainDetail = document.querySelector(".main-detail");
-			mainDetail.style.height = "735px";
-		}
+// 		function detailMove() {
+// 			var mainDetail = document.querySelector(".main-detail");
+// 			mainDetail.style.height = "735px";
+// 		}
 
 //隐藏多级子菜单
 		function hideMoreNav(value) {
@@ -252,54 +173,54 @@ window.onload=function() {
 			}
 		}
 
-		function hideNav(navList) {
-			for (var j = 0; j < navList.length; j++) {
-				if (navList[j].getAttribute("parentId") == this.value) {
-					navList[j].style.display = "none";
-				}
-			}
-			this.setAttribute("status", "0");
-		}
+		// function hideNav(navList) {
+		// 	for (var j = 0; j < navList.length; j++) {
+		// 		if (navList[j].getAttribute("parentId") == this.value) {
+		// 			navList[j].style.display = "none";
+		// 		}
+		// 	}
+		// 	this.setAttribute("status", "0");
+		// }
 
 //实现源码按钮点击事件
-		function sourceBtn(maxwid, maxhei) {
-			var srcBtn = document.querySelector(".source");
-			srcBtn.style.display = (srcBtn.style.display == "block") ? "none" : "block";
-			if (srcBtn.style.display == "block") {
-				//监听java类点击事件
-				var codeBtn = document.querySelectorAll(".source-content li a");
-				for (var i = 0; i < codeBtn.length; i++) {
-					codeBtn[i].addEventListener("click", function () {
-						modalStatus.style.display = (modalStatus.style.display == "block") ? "none" : "block";
-						var opa = 0;
-						showModal(opa);
-					});
-				}
-
-				var wid = 0;
-				var hei = 0;
-				//扩大源码框
-				function move(wid, hei) {
-					wid += 241;
-					hei += 88;
-					if (wid > maxwid && hei > maxhei) {
-						clearTimeout(time);
-						return;
-					}
-					if (wid <= maxwid) {
-						srcBtn.style.width = wid + "px";
-					}
-					if (hei <= maxhei) {
-						srcBtn.style.height = hei + "px";
-					}
-					var time = setTimeout(function () {
-						move(wid, hei);
-					}, 50);
-				}
-
-				move(wid, hei);
-			}
-		}
+// 		function sourceBtn(maxwid, maxhei) {
+// 			var srcBtn = document.querySelector(".source");
+// 			srcBtn.style.display = (srcBtn.style.display == "block") ? "none" : "block";
+// 			if (srcBtn.style.display == "block") {
+// 				//监听java类点击事件
+// 				var codeBtn = document.querySelectorAll(".source-content li a");
+// 				for (var i = 0; i < codeBtn.length; i++) {
+// 					codeBtn[i].addEventListener("click", function () {
+// 						modalStatus.style.display = (modalStatus.style.display == "block") ? "none" : "block";
+// 						var opa = 0;
+// 						showModal(opa);
+// 					});
+// 				}
+//
+// 				var wid = 0;
+// 				var hei = 0;
+// 				//扩大源码框
+// 				function move(wid, hei) {
+// 					wid += 241;
+// 					hei += 88;
+// 					if (wid > maxwid && hei > maxhei) {
+// 						clearTimeout(time);
+// 						return;
+// 					}
+// 					if (wid <= maxwid) {
+// 						srcBtn.style.width = wid + "px";
+// 					}
+// 					if (hei <= maxhei) {
+// 						srcBtn.style.height = hei + "px";
+// 					}
+// 					var time = setTimeout(function () {
+// 						move(wid, hei);
+// 					}, 50);
+// 				}
+//
+// 				move(wid, hei);
+// 			}
+// 		}
 
 //监听类名点击事件
 		function listenSource(modalStatus) {
@@ -346,5 +267,4 @@ window.onload=function() {
 				var time = setTimeout(function () {
 					closeModal(opa);
 				}, 100);
-		}
 	}

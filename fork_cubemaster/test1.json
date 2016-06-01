@@ -1,0 +1,61 @@
+{
+  "menu": [
+    {
+      "level": "1",
+      "name": "org",
+      "pNode": "-1",
+      "path": "org"
+    },
+    {
+      "level": "2",
+      "name": "apache",
+      "pNode": "0",
+      "path": "org/apache"
+    },
+    {
+      "level": "3",
+      "name": "commons",
+      "pNode": "1",
+      "path": "org/apache/commons"
+    },
+    {
+      "level": "4",
+      "name": "codec",
+      "pNode": "2",
+      "path": "org/apache/commons/codec"
+    },
+    {
+      "level": "5",
+      "name": "binary",
+      "pNode": "3",
+      "path": "org/apache/commons/codec/binary"
+    },
+    {
+      "level": "5",
+      "name": "digest",
+      "pNode": "3",
+      "path": "org/apache/commons/codecest"
+    },
+    {
+      "level": "5",
+      "name": "language",
+      "pNode": "3",
+      "path": "org/apache/commons/codec/language"
+    },
+    {
+      "level": "6",
+      "name": "bm",
+      "pNode": "6",
+      "path": "org/apache/commons/codec/language/bm"
+    },
+    {
+      "level": "5",
+      "name": "net",
+      "pNode": "3",
+      "path": "org/apache/commons/codec/net"
+    }
+  ],
+  "protocol": "A-2-5-response",
+  "reason": "successful",
+  "status": "0"
+}
