@@ -260,21 +260,22 @@
     width: 300px;
 }
 .source-nav li{
+    font-size: 20px;
     width: 100%;
     word-break: break-all; 
     line-height: 30px;
     height: 30px;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 2px solid #fff;
 }
 .source-nav li a{
     /*margin-left: 10px;*/
     padding-left: 10px;
 }
 .source-nav li:hover{
+    font-size: 30px;
     background-color: rgb(171, 171, 171);
     color: #333;
     transition: all 0.4s;
-    font-size: 20px;
 }
 .source-nav-active{
     background-color: rgb(171, 171, 171) ; !important;
@@ -430,7 +431,7 @@
             overflow: auto;
         }
         .modal-body-left{
-            /*height: 100%;*/
+            float: left;
             width: 40px;
             background-color: rgba(0, 0, 0, 0.08);
             border-right: 1px solid #fff;
@@ -441,4 +442,8 @@
             color: #888686;
             height: 30px;
             line-height: 30px;
+        }
+        .modal-body-main{
+            float: left;
+            width: 667px;
         }

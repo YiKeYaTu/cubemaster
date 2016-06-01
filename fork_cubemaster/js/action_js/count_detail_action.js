@@ -1,10 +1,17 @@
 /**
  * Created by liuyanhao on 31/5/16.
  */
+//本算法id
+var id;
 //获取算法基本数据
     function loadBasicData() {
+        //获取url中的算法id
+        var param = window.location.search;
+        var index = param.indexOf('=');
+        id = param.substring(index+1,param.length);
+
         var xmlhttp = new XMLHttpRequest();
-        var url = "http://172.22.146.5/FileSystem/servlet/AlgorithmDetailsServlet?protocol=A-2-3-request&algorithm_id=9";
+        var url = "http://172.22.146.5/FileSystem/servlet/AlgorithmDetailsServlet?protocol=A-2-3-request&algorithm_id="+id;
         // var url = "http://172.22.147.5:8080/FileSystem/servlet/AlgorithmMenuServlet?algorithm_id=8";
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -125,6 +132,7 @@ function addSourceData(menus) {
         var parentId = item.pNode;
         //添加a标签内容
         var aTag = document.createElement('a');
+        aTag.style.marginLeft = (item.level - 1)*25+'px';
         var aTagText = document.createTextNode(item.name);
         aTag.appendChild(aTagText);
 
@@ -136,7 +144,7 @@ function addSourceData(menus) {
         liTag.setAttribute('value',index);
         liTag.setAttribute('status','0');
         liTag.className = 'source-nav-link';
-
+        
         if(item.pNode == '-1') {
             //将li标签放在ul标签里面
             sourceNav.appendChild(liTag);
@@ -152,4 +160,21 @@ function addSourceData(menus) {
             }
         }
     })
+}
+
+function getCode(path) {
+    console.log(path)
+    console.log(id)
+    var xmlhttp = new XMLHttpRequest();
+    var url = "http://172.22.147.5:8080/FileSystem/servlet/AlgorithmCodeServlet?algorithm_id="+id+"&&file_name="+path;
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            console.log(xmlhttp.responseText)
+            var codeModal = document.querySelector('.modal-body-main');
+            codeModal.innerHTML = xmlhttp.responseText;
+            codeModal.style.fontSize = "25px";
+        }
+    }
+    xmlhttp.open("GET", url);
+    xmlhttp.send();
 }

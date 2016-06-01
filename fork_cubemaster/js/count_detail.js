@@ -17,21 +17,25 @@
 			animate = true;
 			var opa = 10;
 			closeModal(opa);
+			document.querySelector(".modal-body-main").innerHTML = '';
 		}
 	});
 
-	//监听模态框打开事件
-	for (var i = 0; i < codeBtn.length; i++) {
-		codeBtn[i].addEventListener("click", function () {
-			if(!animate) {
-				animate = true;
-				modalStatus.style.display = (modalStatus.style.display == "block") ? "none" : "block";
-				var opa = 0;
-				showModal(opa);
-				animate = false;
-			}
-		});
-	}
+	// //监听模态框打开事件
+	// for (var i = 0; i < codeBtn.length; i++) {
+	// 	codeBtn[i].addEventListener("click", function () {
+	// 		// console.log(1)
+	// 		if(!animate) {
+	// 			animate = true;
+	// 			modalStatus.style.display = (modalStatus.style.display == "block") ? "none" : "block";
+	// 			var opa = 0;
+	// 			document.querySelector(".modal-body-main").innerHTML = '';
+	// 			getCode(this.getAttribute('path'));
+	// 			showModal(opa);
+	// 			animate = false;
+	// 		}
+	// 	});
+	// }
 
 	//点击源码按钮展开事件
 	function sourceListAction(navList) {
@@ -99,6 +103,8 @@
 						if(!animate) {
 							animate = true;
 							modalStatus.style.display = (modalStatus.style.display == "block") ? "none" : "block";
+							document.querySelector(".modal-body-main").innerHTML = '';
+							getCode(this.getAttribute('path'));
 							var opa = 0;
 							showModal(opa);
 							animate = false;
@@ -106,11 +112,15 @@
 					}
 
 					//未展开
-					if (this.attributes["status"].value == "0") {
+					if (this.getAttribute('status') == "0") {
 						//显示子菜单
 						for (var j = 0; j < navList.length; j++) {
 							if (navList[j].getAttribute("parentId") == this.value) {
 								navList[j].style.display = "list-item";
+								var sourceNavheight = document.querySelector('.source-nav').clientHeight;
+								if(sourceNavheight > 380){
+									document.querySelector('.main-detail').style.minHeight = 700+sourceNavheight+'px';
+								}
 							}
 						}
 						this.setAttribute("status", "1");
@@ -165,8 +175,10 @@
 
 //隐藏多级子菜单
 		function hideMoreNav(value) {
+			var navList = document.querySelectorAll('.source-nav li');
 			for (var i = 0; i < navList.length; i++) {
 				if (navList[i].getAttribute("parentId") == value) {
+					console.log("aaaaa")
 					arguments.callee(navList[i].value);
 					navList[i].style.display = "none";
 				}
