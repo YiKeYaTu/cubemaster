@@ -235,15 +235,15 @@
 // 		}
 
 //监听类名点击事件
-		function listenSource(modalStatus) {
-			for (var i = 0; i < codeBtn.length; i++) {
-				codeBtn[i].addEventListener("click", function () {
-					modalStatus.style.display = (modalStatus.style.display == "block") ? "none" : "block";
-					var opa = 0;
-					showModal(opa);
-				});
-			}
-		}
+// 		function listenSource(modalStatus) {
+// 			for (var i = 0; i < codeBtn.length; i++) {
+// 				codeBtn[i].addEventListener("click", function () {
+// 					modalStatus.style.display = (modalStatus.style.display == "block") ? "none" : "block";
+// 					var opa = 0;
+// 					showModal(opa);
+// 				});
+// 			}
+// 		}
 
 
 

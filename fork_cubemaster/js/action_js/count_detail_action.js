@@ -3,6 +3,7 @@
  */
 //本算法id
 var id;
+
 //获取算法基本数据
     function loadBasicData() {
         //获取url中的算法id
@@ -10,12 +11,11 @@ var id;
         var index = param.indexOf('=');
         id = param.substring(index+1,param.length);
 
+        //获取算法基本信息
         var xmlhttp = new XMLHttpRequest();
         var url = "http://172.22.146.5/FileSystem/servlet/AlgorithmDetailsServlet?protocol=A-2-3-request&algorithm_id="+id;
-        // var url = "http://172.22.147.5:8080/FileSystem/servlet/AlgorithmMenuServlet?algorithm_id=8";
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                console.log(xmlhttp.responseText)
                 var content = JSON.parse(xmlhttp.responseText)
                 addBasicData(content);
             }
@@ -24,7 +24,7 @@ var id;
         xmlhttp.send();
     }
 
-    loadBasicData()
+    loadBasicData();
 
 //将基本信息添加到节点上
     function addBasicData(content) {
@@ -98,17 +98,17 @@ var id;
 //获取源码下拉框
 function loadSourceList() {
     var xmlhttp = new XMLHttpRequest();
-    // var url = "http://172.22.146.5/FileSystem/servlet/AlgorithmDetailsServlet?protocol=A-2-3-request&algorithm_id=9";
-    // var url = "http://172.22.147.5:8080/FileSystem/servlet/AlgorithmMenuServlet?algorithm_id=8";
+
+    //这是一个测试
     var url = 'test1.json';
+    
+    // var url = 'http://172.22.147.5:8080/FileSystem/servlet/AlgorithmMenuServlet?algorithm='+id;
     xmlhttp.onreadystatechange = function (){
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             if(xmlhttp.response.status == '0'){
                 var sourceNav = document.querySelector('.source-nav');
-                console.log(sourceNav)
-
+                
                 addSourceData(xmlhttp.response.menu);
-                // console.log(xmlhttp.response.menu);
                 var sourceList = document.querySelectorAll('.source-nav li');
 
                 //源码按钮事件
@@ -123,12 +123,12 @@ function loadSourceList() {
     xmlhttp.send();
 }
 
+//将目录结构添加到节点
 function addSourceData(menus) {
     var sourceNav = document.querySelector('.source-nav');
 
     sourceNav.innerHTML = '';
     menus.forEach(function (item,index,array) {
-        // debugger;
         var parentId = item.pNode;
         //添加a标签内容
         var aTag = document.createElement('a');
@@ -162,15 +162,14 @@ function addSourceData(menus) {
     })
 }
 
+//得到源码(需要连内网)
 function getCode(path) {
-    console.log(path)
-    console.log(id)
     var xmlhttp = new XMLHttpRequest();
-    var url = "http://172.22.147.5:8080/FileSystem/servlet/AlgorithmCodeServlet?algorithm_id="+id+"&&file_name="+path;
+    var url = "http://172.22.147.5:8080/FileSystem/servlet/AlgorithmCodeServlet?algorithm_id="+id+"&file_name="+path;
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            console.log(xmlhttp.responseText)
             var codeModal = document.querySelector('.modal-body-main');
+            console.log(xmlhttp.responseText)
             codeModal.innerHTML = xmlhttp.responseText;
             codeModal.style.fontSize = "25px";
         }
