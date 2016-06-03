@@ -100,9 +100,9 @@ function loadSourceList() {
     var xmlhttp = new XMLHttpRequest();
 
     //这是一个测试
-    var url = 'test1.json';
+    // var url = 'test1.json';
     
-    // var url = 'http://172.22.147.5:8080/FileSystem/servlet/AlgorithmMenuServlet?algorithm='+id;
+    var url = 'http://172.22.147.5:8080/FileSystem/servlet/AlgorithmMenuServlet?algorithm_id='+id;
     xmlhttp.onreadystatechange = function (){
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             if(xmlhttp.response.status == '0'){
@@ -169,7 +169,6 @@ function getCode(path) {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var codeModal = document.querySelector('.modal-body-main');
-            console.log(xmlhttp.responseText)
             codeModal.innerHTML = xmlhttp.responseText;
             codeModal.style.fontSize = "25px";
         }
