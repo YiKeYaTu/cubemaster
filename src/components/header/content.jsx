@@ -12,7 +12,7 @@ let navList = [{
     href: ''
 }, {
     val: '算法',
-    href: ''
+    href: './alg_index.html'
 }, {
     val: '数据',
     href: './data_index.html'
@@ -85,7 +85,7 @@ class HeaderComponent extends Component {
                         <li 
                             style={{
                                 color: '#f1f1f1',
-                                textAlign: 'center',
+                                textAlign: 'left',
                                 width: '200px',
                                 height: '60px',
                                 lineHeight: '60px',

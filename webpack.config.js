@@ -5,6 +5,7 @@ module.exports = {
         index: ["./src/entry/index.jsx"],
         data: ["./src/entry/data.jsx"],
         combination: ["./src/entry/combination.jsx"],
+        alg: ["./src/entry/alg.jsx"],
         vendor: ['react', 'react-dom', 'redux', 'redux-thunk']
     },
     module: {
