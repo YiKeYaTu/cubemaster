@@ -168,16 +168,14 @@
 .para-list>div{
     display: inline-block;
     width: 1115px;
-    height: 63px;
 }
 .para-list-head{
     height: 31px;
     overflow: hidden;
 }
-.para-list-content{
+.para-list-content ul{
     overflow: hidden;
-
-}
+} 
 .pro-type{
     margin-left: 20px;
 }
@@ -248,7 +246,7 @@
     transition: all 0.4s;
 }
 .source-nav{
-    width: 300px;
+    width: 1115px;
     position: absolute;
     top: 90px;
     left: 20px;
@@ -262,21 +260,21 @@
     width: 300px;
 }
 .source-nav li{
+    font-size: 20px;
     width: 100%;
     word-break: break-all; 
     line-height: 30px;
     height: 30px;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 2px solid #fff;
 }
 .source-nav li a{
-    /*margin-left: 10px;*/
     padding-left: 10px;
 }
 .source-nav li:hover{
+    font-size: 30px;
     background-color: rgb(171, 171, 171);
     color: #333;
     transition: all 0.4s;
-    font-size: 20px;
 }
 .source-nav-active{
     background-color: rgb(171, 171, 171) ; !important;
@@ -285,10 +283,13 @@
     font-size: 20px;
 }
 .source-nav-link{
-    background-color: rgb(245, 245, 245);
     color: #99999A;
     font-size: 16px;
     transition: all 0.4s;
+    background: -webkit-linear-gradient(left, rgb(221, 221, 221),rgb(255,255,255)); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(left, rgb(221, 221, 221),rgb(255,255,255)); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(left, rgb(221, 221, 221),rgb(255,255,255)); /* Firefox 3.6 - 15 */
+    background: linear-gradient(left, rgb(221, 221, 221),rgb(255,255,255)); /* 标准的语法 */
 }
 .souce-nav li a{
     margin-left: 5px;
@@ -378,7 +379,6 @@
              height:1455px;
              z-index: 1000;
              background-color: rgba(0, 0, 0, 0.2); 
-             /*opacity: 0.5;   /* 背景半透明 */
         }
         /* 模态框样式 */
         .modal-data{    
@@ -389,16 +389,13 @@
             right: 0;
             margin:auto auto;
             width:70%;
-             height: 60%;
+             height: 100%;
              background-color: #fff;
              box-shadow: 0 0 5px #333;
-             border-radius: 50px;
-
         }
         .modal-head{
             height: 50px;
             background-color: rgb(84,182,231);
-            border-radius: 50px 50px 0 0;
             text-align: center;
             line-height: 50px;
             font-weight: solid;
@@ -410,7 +407,6 @@
             height: 50px;
             width: 50px;
             background-color: rgb(84,182,231);
-            border-top-right-radius: 50px;
             position: absolute;
             right: -6px;
             float: right;
@@ -423,4 +419,25 @@
                background-color: rgb(69, 156, 199);
                transition: all 0.4;
                color: #333;
+        }
+        .modal-body{
+            height: 100%;
+            overflow: auto;
+        }
+        .modal-body-left{
+            float: left;
+            width: 40px;
+            background-color: rgba(0, 0, 0, 0.08);
+            border-right: 1px solid #fff;
+        }
+        .modal-body-left p{
+            font-size: 20px;
+            text-align: center;
+            color: #888686;
+            height: 30px;
+            line-height: 30px;
+        }
+        .modal-body-main{
+            float: left;
+            width: 667px;
         }
