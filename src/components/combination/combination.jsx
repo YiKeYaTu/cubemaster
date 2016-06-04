@@ -183,7 +183,7 @@ class CombinationComponent extends Component {
                     style={{
                         width: '100%',
                         position: 'relative',
-                        height: '100%'
+                        height: '100%',
                     }}
                 >
                     <CombinationRes 

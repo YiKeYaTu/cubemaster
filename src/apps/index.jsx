@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Header from '../components/header/content.jsx'
 import Content from '../components/index/content.jsx'
+import Footer from '../components/footer/content.jsx'
 
 let App = React.createClass({
     render () {
@@ -25,6 +26,7 @@ class AppComponent extends Component {
                 <Content
                     {...this.props}
                  />
+                <Footer />
             </section>
         )
     }

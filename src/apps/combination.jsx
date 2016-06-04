@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Header from '../components/header/content.jsx'
 import Content from '../components/combination/Content.jsx'
 import ResContent from '../components/combination/res_content.jsx'
+import Footer from '../components/footer/content.jsx'
 
 let App = React.createClass({
     render () {
@@ -20,6 +21,7 @@ class AppComponent extends Component {
             <section
                 style={{
                     width: '100%',
+                    overflow: 'hidden'
                 }}
             >
                 <Header 
@@ -33,6 +35,7 @@ class AppComponent extends Component {
                     dispatch={this.props.dispatch}
                     resContentList={this.props.resContentList}
                 />
+                <Footer />
             </section>
         )
     }

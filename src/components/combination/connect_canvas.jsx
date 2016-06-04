@@ -19,7 +19,10 @@ class ConnectCanvasComponent extends Component {
                 onClick={this.props.handleRemoveLine}
                 style={{
                     width: this.props.canvasWidth / window.devicePixelRatio + 'px',
-                    height: this.props.canvasHeight / window.devicePixelRatio + 'px'
+                    height: this.props.canvasHeight / window.devicePixelRatio + 'px',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
                 }}
                 ref='context'
                 width={this.props.canvasWidth}

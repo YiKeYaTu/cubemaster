@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Header from '../components/header/content.jsx'
 import Content from '../components/data/Content.jsx'
 import { changeDatasetDownlist } from '../actions/data_action'
+import Footer from '../components/footer/content.jsx'
 
 let App = React.createClass({
     datasetDownFlag: false,
@@ -40,6 +41,7 @@ class AppComponent extends Component {
                 <Content 
                     {...this.props}
                 />
+                <Footer />
             </section>
         )
     }

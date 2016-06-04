@@ -63,13 +63,13 @@ let Header = React.createClass({
 class HeaderComponent extends Component {
     render () {
         return (
-            <section
+            <header
                 style={{
                     width: '100%',
                     background: '#333'
                 }}
             >
-                <header 
+                <section 
                     onMouseOut={this.props.handleMouseOut}
                     style={{
                         width: '1160px',
@@ -120,8 +120,8 @@ class HeaderComponent extends Component {
                         }.bind(this))}
                         <Mover move={this.props.move} />
                     </ul>
-                </header>
-            </section>
+                </section>
+            </header>
         )
     }
 }
