@@ -16,7 +16,7 @@ class FooterComponent extends Component {
                     width: '100%',
                     background: '#333',
                     overflow: 'hidden',
-                    marginTop: '40px',
+                    marginTop: '50px',
                     paddingTop: '30px'
                 }}
             >

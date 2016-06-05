@@ -1,20 +1,13 @@
 import React, { Component } from 'react'
-import DataElement from './data_element.jsx'
-import ChooseDataList from './choose_data_list.jsx'
+import DataElement from '../data/data_element.jsx'
 import Page from '../../refs/page.jsx'
 
 let Content = React.createClass({
-
     render () {
-
         return (
-            <ContentComponent
-                {...this.props}
-            />
+            <ContentComponent />
         )
-
     }
-
 })
 
 class ContentComponent extends Component {
@@ -30,14 +23,28 @@ class ContentComponent extends Component {
                     className='user-input-section'
                     style={{
                         width: '100%',
+                        overflow: 'hidden',
                         borderBottom: '4px solid #333',
                         marginBottom: '40px',
                         padding: '40px 0px'
                     }}
                 >
-                    <ChooseDataList 
-                        {...this.props}
-                    />
+                    <div
+                        style={{
+                            float: 'left',
+                            width: '120px',
+                            height: '40px',
+                            lineHeight: '40px',
+                            transition: 'all .4s',
+                            background: '#333',
+                            textAlign: 'center',
+                            borderRadius: '6px',
+                            color: '#f5f5f5',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        我的算法
+                    </div>
                     <div
                         className='upload-data'
                         style={{
@@ -54,7 +61,7 @@ class ContentComponent extends Component {
                             cursor: 'pointer'
                         }}
                     >
-                        上传数据
+                        上传算法
                     </div>
                     <div
                         className='search'

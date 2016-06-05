@@ -55,7 +55,7 @@ class AlgElementComponent extends Component {
                             textDecoration: 'none',
                             color: '#6d757a',
                         }}
-                        href='##'
+                        href={`./alg_class.html?algorithmClass=${algorithm_class}&currentPage=1&perPageNumber=21`}
                     >
                         查看更多
                     </a>

@@ -4,9 +4,9 @@ import { createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { Provider } from 'react-redux'
 import algReducers from '../reducers/alg_reducers'
-import Alg from '../apps/alg.jsx'
+import AlgClass from '../apps/alg_class.jsx'
 import { getLoginInf } from '../actions/header_action'
-import { fetchAlg } from '../actions/alg_action'
+
 
 let store = createStore(
     algReducers,
@@ -16,15 +16,11 @@ let store = createStore(
 )
 
 store.dispatch(getLoginInf())
-store.dispatch(fetchAlg({
-    operate: 'total_algorithm',
-    current_page: 1,
-    per_page_number: 2,
-}))
+
 
 render(
     <Provider store={store}>
-        <Alg />
+        <AlgClass />
     </Provider>,
     document.getElementById('container')
 );

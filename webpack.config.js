@@ -6,6 +6,7 @@ module.exports = {
         data: ["./src/entry/data.jsx"],
         combination: ["./src/entry/combination.jsx"],
         alg: ["./src/entry/alg.jsx"],
+        alg_class: ["./src/entry/alg_class.jsx"],
         vendor: ['react', 'react-dom', 'redux', 'redux-thunk']
     },
     module: {
