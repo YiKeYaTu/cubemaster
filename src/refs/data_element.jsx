@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import DataElementCom from '../../refs/data_element_com.jsx'
+import DataElementCom from './data_element_com.jsx'
 
 let DataElement = React.createClass({
     render () {
@@ -13,8 +13,13 @@ let DataElement = React.createClass({
 
 class DataElementComponent extends Component {
     render () {
-        let dataset = this.props.dataset.data.dataset,
+        let dataset,
+            finish
+            console.log(this.props)
+        if (this.props.dataset) {
+            dataset = this.props.dataset.data.dataset,
             finish = this.props.dataset.finish
+        }
 
         let showDataInf
 

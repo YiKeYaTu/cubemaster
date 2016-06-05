@@ -66,7 +66,7 @@ class DataElementComComponents extends Component {
                 >
                     简介: {data.description}
                 </div>
-                <a href={`xxxx?dataset_id=${data.dataset_id}`}>
+                <a href={`./alg_class.html?dataset_id=${data.dataset_id || data.algorithm_id}`}>
                     <div
                         style={{
                             width: '60px',

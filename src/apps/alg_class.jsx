@@ -25,7 +25,9 @@ class AppComponent extends Component {
                <Header 
                     {...this.props} 
                 />
-                <Content />
+                <Content 
+                    {...this.props} 
+                />
                 <Footer />
             </section>
         )

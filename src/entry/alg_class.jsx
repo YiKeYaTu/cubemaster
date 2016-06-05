@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { Provider } from 'react-redux'
-import algReducers from '../reducers/alg_reducers'
+import algReducers from '../reducers/alg_class_reducers'
 import AlgClass from '../apps/alg_class.jsx'
 import { getLoginInf } from '../actions/header_action'
 

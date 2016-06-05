@@ -1,11 +1,29 @@
 import React, { Component } from 'react'
-import DataElement from '../data/data_element.jsx'
+import DataElement from '../../refs/data_element.jsx'
 import Page from '../../refs/page.jsx'
+import fetchAlg from '../../actions/alg_class_action'
 
 let Content = React.createClass({
+    getQuery () {
+        let url = window.location.href
+
+        let query = url.match(/algorithmClass=(.+?)&/)
+        console.log(query[1])
+        return query
+    },
+    componentDidMount () {
+        this.props.dispatch(fetchAlg({
+            algorithmClass: this.getQuery(),
+            currentPage: 1,
+            perPageNumber: 21
+        }))
+        console.log(this.props)  
+    },
     render () {
         return (
-            <ContentComponent />
+            <ContentComponent 
+                {...this.props}
+            />
         )
     }
 })
@@ -103,20 +121,7 @@ class ContentComponent extends Component {
                         </form>
                     </div>
                 </section>
-                <section
-                    style={{
-                        width: '100%',
-                        marginTop: '10px',
-                        overflow: 'hidden',
-                    }}
-                >
-                    <DataElement 
-                        {...this.props}
-                    />  
-                </section>
-                <Page
-                    {...this.props}
-                />
+                
             </section>
         )
     }

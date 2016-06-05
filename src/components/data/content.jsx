@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import DataElement from './data_element.jsx'
+import DataElement from '../../refs/data_element.jsx'
 import ChooseDataList from './choose_data_list.jsx'
 import Page from '../../refs/page.jsx'
 
